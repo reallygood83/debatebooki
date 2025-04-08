@@ -74,8 +74,8 @@ st.markdown("""
     h1 {
         font-family: 'Jua', sans-serif;
         color: #4361ee;
-        font-size: 2.5rem;
-        padding: 1rem;
+        font-size: 2.2rem;
+        padding: 0.8rem;
         background: linear-gradient(to right, #e9f2ff, #dbe7ff);
         border-radius: 15px;
         margin-bottom: 0.5rem;
@@ -89,17 +89,17 @@ st.markdown("""
         border-radius: 15px;
         margin-bottom: 30px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        color: white;  /* 텍스트 색상을 흰색으로 변경 */
+        color: white;
         animation: float 6s ease-in-out infinite;
     }
     
-    .header-box h1, .header-box p {
-        color: white;  /* 헤더와 문단 텍스트도 흰색으로 변경 */
+    .header-box h1, .header-box p, .header-box span, .header-box div {
+        color: white !important;
         margin: 0;
     }
     
     .header-box .subtitle {
-        color: white;  /* 부제목도 흰색으로 변경 */
+        color: white !important;
         font-size: 1.2em;
         margin-top: 10px;
     }
@@ -110,7 +110,7 @@ st.markdown("""
     }
     
     .subtitle {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
         margin-top: 0.5rem;
         padding: 0.5rem 1rem;
@@ -124,10 +124,10 @@ st.markdown("""
     /* 섹션 헤더 */
     h2 {
         font-family: 'Jua', sans-serif;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         padding: 0.8rem 1rem;
-        margin-top: 2.5rem;
-        margin-bottom: 1.2rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
         color: white;
         background: linear-gradient(to right, #4361ee, #3a0ca3);
         border-radius: 12px;
@@ -135,7 +135,7 @@ st.markdown("""
     }
     
     h3 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         color: #4361ee;
         margin-top: 1.5rem;
         border-bottom: 3px dashed #4361ee;
@@ -144,8 +144,8 @@ st.markdown("""
     }
     
     p, li {
-        font-size: 1.15rem;
-        line-height: 1.6;
+        font-size: 1.1rem;
+        line-height: 1.5;
         color: #333;
     }
     
@@ -176,6 +176,19 @@ st.markdown("""
         margin: 0;
     }
     
+    /* 결과 상자 스타일 수정 - 세로 길이 조정 */
+    .stTextArea>div>div>textarea {
+        max-height: 300px !important;
+        min-height: 150px !important;
+    }
+    
+    /* 텍스트 크기 조화 */
+    .big-emoji {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    
     /* 확장 패널 */
     .stExpander {
         border-radius: 12px;
@@ -198,97 +211,56 @@ st.markdown("""
         font-size: 1.1rem;
         border-radius: 12px;
         border: 2px solid #e6e9ef;
-        padding: 10px 15px;
-        transition: all 0.3s ease;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
     }
     
-    .stTextInput>div>div>input:focus, .stTextArea>div>div>textarea:focus {
-        border-color: #4361ee;
-        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-    }
-    
-    /* 이모지와 아이콘 */
-    .big-emoji {
-        font-size: 6rem;
-        text-align: center;
-        margin-bottom: 0.5rem;
-        animation: float 3s ease-in-out infinite;
-        display: block;
-    }
-    
-    /* 메인 카드 콘텐츠 */
-    .main-card {
-        background: linear-gradient(135deg, #ffffff 0%, #f5f7ff 100%);
-        border-radius: 20px;
-        padding: 1.5rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        margin-bottom: 2rem;
-        border: 1px solid rgba(67, 97, 238, 0.1);
-        transition: all 0.3s ease;
-    }
-    
-    .main-card:hover {
-        box-shadow: 0 15px 35px rgba(67, 97, 238, 0.12);
-        transform: translateY(-5px);
-    }
-    
-    /* 특별 섹션 */
-    .feature-box {
-        background: white;
-        border-radius: 15px;
-        padding: 1.2rem;
-        margin: 1rem 0;
-        border-left: 5px solid #4361ee;
-        transition: all 0.3s ease;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
-    }
-    
-    .feature-box:hover {
-        box-shadow: 0 8px 25px rgba(67, 97, 238, 0.15);
-        transform: translateY(-3px) scale(1.01);
-    }
-    
-    /* 사이드바 스타일 */
-    .sidebar .sidebar-content {
-        background: linear-gradient(135deg, #f8f9ff 0%, #f0f5ff 100%);
-        border-radius: 15px;
-        padding: 15px;
+    .step-card-1, .step-card-2, .step-card-3 {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 12px;
+        padding: 1rem;
         margin-bottom: 1rem;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(67, 97, 238, 0.1);
-    }
-    
-    .sidebar .sidebar-content:hover {
-        background: linear-gradient(135deg, #f0f5ff 0%, #e4ecff 100%);
-        box-shadow: 0 8px 20px rgba(67, 97, 238, 0.12);
-        transform: translateY(-3px);
-    }
-    
-    /* 접을 수 있는 사이드바 토글 버튼 */
-    #sidebar-toggle {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        z-index: 999;
-        background-color: #4361ee;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
     }
     
-    #sidebar-toggle:hover {
-        background-color: #3a0ca3;
-        transform: scale(1.1);
+    .step-card-1 h3, .step-card-2 h3, .step-card-3 h3 {
+        font-size: 1.2rem;
+        margin-top: 0;
+    }
+    
+    .step-card-1 p, .step-card-2 p, .step-card-3 p, 
+    .step-card-1 li, .step-card-2 li, .step-card-3 li {
+        font-size: 1rem;
+    }
+    
+    /* 파란색 배경 내 텍스트가 항상 흰색이 되도록 */
+    .stTabs [data-baseweb="tab-panel"] {
+        padding: 1rem;
+    }
+    
+    [data-testid="stHeader"] {
+        background-color: transparent;
+    }
+    
+    [data-testid="stVerticalBlock"] > [style*="background-color: rgb(67, 97, 238)"],
+    [data-testid="stVerticalBlock"] > [style*="background-color: #4361ee"],
+    [data-testid="stVerticalBlock"] > [style*="background-color: #3a0ca3"],
+    [data-testid="stVerticalBlock"] > [style*="background: linear-gradient"],
+    [data-testid="stHorizontalBlock"] > [style*="background-color: rgb(67, 97, 238)"],
+    [data-testid="stHorizontalBlock"] > [style*="background-color: #4361ee"],
+    [data-testid="stHorizontalBlock"] > [style*="background-color: #3a0ca3"],
+    [data-testid="stHorizontalBlock"] > [style*="background: linear-gradient"] {
+        color: white !important;
+    }
+    
+    [data-testid="stVerticalBlock"] > [style*="background-color: rgb(67, 97, 238)"] *,
+    [data-testid="stVerticalBlock"] > [style*="background-color: #4361ee"] *,
+    [data-testid="stVerticalBlock"] > [style*="background-color: #3a0ca3"] *,
+    [data-testid="stVerticalBlock"] > [style*="background: linear-gradient"] *,
+    [data-testid="stHorizontalBlock"] > [style*="background-color: rgb(67, 97, 238)"] *,
+    [data-testid="stHorizontalBlock"] > [style*="background-color: #4361ee"] *,
+    [data-testid="stHorizontalBlock"] > [style*="background-color: #3a0ca3"] *,
+    [data-testid="stHorizontalBlock"] > [style*="background: linear-gradient"] * {
+        color: white !important;
     }
     
     /* 토론 꿀팁 박스 */
@@ -324,69 +296,25 @@ st.markdown("""
         animation: rainbow 8s linear infinite;
     }
     
-    /* 토론 단계 설명 카드 */
-    .step-card-1 {
-        background: linear-gradient(135deg, #e9f2ff 0%, #d4e4ff 100%);
+    /* 주제 추천 결과 컨테이너 스타일 수정 */
+    .recommendation-result {
+        background-color: white;
+        border-radius: 12px;
+        padding: 1rem;
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid #4361ee;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* 사이드바 스타일 */
+    .sidebar .sidebar-content {
+        background: linear-gradient(135deg, #f8f9ff 0%, #f0f5ff 100%);
         border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-    }
-    
-    .step-card-2 {
-        background: linear-gradient(135deg, #e6ffe6 0%, #d4f7d4 100%);
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-    }
-    
-    .step-card-3 {
-        background: linear-gradient(135deg, #fff2e6 0%, #ffe5cc 100%);
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-    }
-    
-    .step-card-1:hover, .step-card-2:hover, .step-card-3:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    
-    /* 푸터 */
-    .footer {
-        text-align: center;
-        padding: 20px;
-        color: #666;
-        font-size: 0.9rem;
-        margin-top: 30px;
-        border-top: 1px dashed #ccc;
-    }
-    
-    /* 입력 필드와 버튼 정렬 */
-    .input-with-button {
-        display: flex;
-        align-items: flex-end;
-        gap: 10px;
-    }
-    
-    .input-with-button > div:first-child {
-        flex: 3;
-    }
-    
-    .input-with-button > div:last-child {
-        flex: 1;
-    }
-    
-    /* 버튼 내부 텍스트 스타일 추가 */
-    .stButton button p {
-        color: white;
-        margin: 0;
-        padding: 0;
+        padding: 15px;
+        margin-bottom: 1rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -820,10 +748,16 @@ with col2:
                 if response:
                     # 응답 결과를 세션 상태에 저장 (다른 기능에서도 참조 가능)
                     st.session_state.topic_recommendations = response
-                    # 결과를 확장 패널에 표시 (기본 확장 상태)
-                    with st.expander(f"'{topic_interest}'에 관한 토론 주제 추천 📋", expanded=True):
-                        st.markdown(response)
-                        st.success("이 주제들 중에 마음에 드는 것이 있다면, 아래 '찬반 논거 아이디어 보기' 기능을 사용해 보세요! 👇")
+                    # 결과를 고정 크기 컨테이너에 표시
+                    st.markdown(f"""
+                    <div style="margin-top:15px;">
+                        <h3>'{topic_interest}'에 관한 토론 주제 추천 📋</h3>
+                    </div>
+                    <div class="recommendation-result">
+                        {response}
+                    </div>
+                    """, unsafe_allow_html=True)
+                    st.success("이 주제들 중에 마음에 드는 것이 있다면, 아래 '찬반 논거 아이디어 보기' 기능을 사용해 보세요! 👇")
                 else:
                     st.error("앗! 주제를 찾는데 문제가 생겼어요. 다른 관심사를 입력해 볼까요?")
 st.markdown('</div>', unsafe_allow_html=True)
@@ -861,7 +795,11 @@ with st.expander("논거 아이디어가 뭐예요?", expanded=False):
 if 'topic_recommendations' in st.session_state and st.session_state.topic_recommendations:
     with st.expander("추천받은 주제를 사용하시겠어요?", expanded=True):
         st.info("위에서 추천받은 주제가 있네요! 아래 입력창에 직접 복사해서 사용할 수 있어요 📋")
-        st.markdown(st.session_state.topic_recommendations)
+        st.markdown(f"""
+        <div class="recommendation-result" style="max-height:200px;">
+            {st.session_state.topic_recommendations}
+        </div>
+        """, unsafe_allow_html=True)
 
 # 토론 주제 입력 필드 (고유 키 부여)
 st.markdown('<div class="input-with-button">', unsafe_allow_html=True)
@@ -889,10 +827,16 @@ with col2:
                     st.session_state.argument_response = response
                     st.session_state.argument_topic = argument_topic
                     
-                    # 결과를 확장 패널에 표시 (기본 확장 상태)
-                    with st.expander(f"'{argument_topic}'에 대한 찬반 논거 아이디어 ⚖️", expanded=True):
-                        st.markdown(response)
-                        st.success("이제 이 아이디어들을 바탕으로 나만의 의견을 만들어 보세요! 아래 '피드백 받기' 기능으로 의견을 확인받을 수 있어요 👇")
+                    # 결과를 고정 크기 컨테이너에 표시
+                    st.markdown(f"""
+                    <div style="margin-top:15px;">
+                        <h3>'{argument_topic}'에 대한 찬반 논거 아이디어 ⚖️</h3>
+                    </div>
+                    <div class="recommendation-result">
+                        {response}
+                    </div>
+                    """, unsafe_allow_html=True)
+                    st.success("이제 이 아이디어들을 바탕으로 나만의 의견을 만들어 보세요! 아래 '피드백 받기' 기능으로 의견을 확인받을 수 있어요 👇")
                 else:
                     st.error("아이디어를 찾는데 문제가 생겼어요. 다른 주제로 시도해볼까요?")
 st.markdown('</div>', unsafe_allow_html=True)
