@@ -690,89 +690,422 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 # 1. 경기 토론 수업 모형 안내 기능
 # ============================
 with tab1:
-    st.header("📚 경기 토론 수업 모형 알아보기")
-    
-    # 경기 토론 수업 모형 소개 (중앙 정렬)
-    st.markdown("<h3 style='text-align:center'>😀 경기 토론 수업 모형은 이렇게 진행해요!</h3>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align:center'>친구들과 함께 토론할 때 어떻게 하면 좋을지 알려주는 방법이에요. 세 가지 단계로 이루어져 있답니다!</p>", unsafe_allow_html=True)
-    
-    # 구분선 추가
-    st.divider()
-    
-    # 스테이지 1 - 다름과 마주하기
+    # 커스텀 CSS 스타일
     st.markdown("""
-    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
-        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">1</div>
-        <div style="flex: 1;">
-            <h3 style="margin-top: 0; color: #333333;">📌 토론 주제 추천</h3>
-            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
-                <p style="margin: 0; color: #333333;">다양한 생각이 있다는 것을 알아보는 단계예요.</p>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .main {
+            background: linear-gradient(135deg, #fff9f9 0%, #fff5f2 100%);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #66545e;
+        }
+        
+        /* 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #ffb7c5, #ffd1dc);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            color: #66545e;
+            margin: 0;
+            padding: 10px 0;
+            font-size: 2.2em;
+        }
+        
+        .header p {
+            color: #66545e;
+            margin: 0;
+            font-size: 1.2em;
+        }
+        
+        /* 카드 스타일 */
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* 원칙 카드 스타일 */
+        .principle-card {
+            background-color: #fff5f2;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ffb7c5;
+        }
+        
+        /* 단계 카드 스타일 */
+        .step-card {
+            background-color: #fff5f2;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ffd1dc;
+        }
+        
+        .step-number {
+            background-color: #ffb7c5;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+            float: left;
+        }
+        
+        .step-content {
+            margin-left: 55px;
+        }
+        
+        /* 목표 카드 스타일 */
+        .goal-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            height: 100%;
+            border: 1px solid #ffe0e6;
+        }
+        
+        .goal-icon {
+            background-color: #ffd1dc;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+        }
+        
+        /* 예시 박스 스타일 */
+        .example-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            border: 1px solid #ffe0e6;
+        }
+        
+        /* 특징 스타일 */
+        .feature-box {
+            background-color: #ffeef2;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* 둥근 원 네임택 */
+        .circle-tag {
+            display: inline-block;
+            background-color: #ffb7c5;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 10px;
+        }
+        
+        /* 목록 스타일 */
+        ul.custom-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        ul.custom-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+        }
+        
+        ul.custom-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ffb7c5;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        
+        /* 푸터 스타일 */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #66545e;
+            font-size: 0.8em;
+            margin-top: 50px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # SVG 아이콘 함수
+    def get_svg_icon(icon_name):
+        icons = {
+            "critical_thinking": """<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>""",
+            "collaboration": """<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>""",
+            "diversity": """<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+            </svg>""",
+            "citizen": """<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>"""
+        }
+        return icons.get(icon_name, "")
+
+    # 헤더
+    st.markdown("""
+    <div class="header">
+        <h1>경기 토론 수업 모형</h1>
+        <p>다름과 공존하는 경기토론교육 모형</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 보이텔스바흐 합의 원칙
+    st.markdown("""
+    <div class="card">
+        <h2>보이텔스바흐 합의 원칙</h2>
+        <p>경기 토론 수업 모형은 다음 세 가지 핵심 원칙에 기반합니다:</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    principles_col1, principles_col2, principles_col3 = st.columns(3)
+
+    with principles_col1:
+        st.markdown("""
+        <div class="principle-card">
+            <div style="display: flex; align-items: center;">
+                <div class="circle-tag">1</div>
+                <h3 style="margin: 0;">강제성의 금지</h3>
             </div>
-            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                <li>토론 주제에 대해 처음 생각해보기</li>
-                <li>친구들은 어떻게 생각하는지 듣기</li>
-                <li>주제가 왜 중요한지 이해하기</li>
+            <p>교사는 특정 견해를 주입하거나 강요해서는 안 됩니다.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with principles_col2:
+        st.markdown("""
+        <div class="principle-card">
+            <div style="display: flex; align-items: center;">
+                <div class="circle-tag">2</div>
+                <h3 style="margin: 0;">논쟁성의 유지</h3>
+            </div>
+            <p>사회적으로 논쟁적인 주제는 교실에서도 다루어져야 하며, 다양한 관점을 탐색하는 기회를 제공해야 합니다.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with principles_col3:
+        st.markdown("""
+        <div class="principle-card">
+            <div style="display: flex; align-items: center;">
+                <div class="circle-tag">3</div>
+                <h3 style="margin: 0;">정치적 행위 능력의 강화</h3>
+            </div>
+            <p>학생들은 토론을 통해 사회 문제에 대한 비판적 사고력을 키우고 민주 시민으로서의 책임감을 함양해야 합니다.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # 핵심 특징
+    st.markdown("""
+    <div class="feature-box">
+        <h2>핵심 특징: 쟁점 중심 토론 교육</h2>
+        <p>학생들이 특정 사회적 이슈나 논쟁거리에 대해 깊이 있게 탐구하고 자신의 입장을 논리적으로 펼치는 것을 강조합니다.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 3단계 프로세스
+    st.markdown("""
+    <div class="card">
+        <h2>토론 수업 3단계 프로세스</h2>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 1단계: 다름과 마주하기
+    st.markdown("""
+    <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            <h3>다름과 마주하기</h3>
+            <ul class="custom-list">
+                <li>토론 주제를 처음 접하고, 관련 자료를 조사</li>
+                <li>핵심 쟁점을 파악하고 토론의 방향 설정</li>
+                <li>브레인스토밍을 통해 주제에 대한 생각을 자유롭게 표현</li>
+                <li>핵심 용어를 정의하고 토론의 성격 파악</li>
             </ul>
-            <div style="background-color: #f0f0f0; padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
-                <p style="margin: 0; font-style: italic; font-size: 0.9rem;"><strong>예시:</strong> "학교에서 스마트폰을 사용하는 것"에 대해 찬성하는 친구도 있고, 
-                반대하는 친구도 있다는 것을 알게 됩니다.</p>
+            <div class="example-box">
+                <p style="font-size: 0.9em; font-style: italic; margin: 0;">
+                    <strong>예시:</strong> 해외여행 시 등산복 착용에 대한 토론을 준비할 때, 관련 기사를 찾아보고 자신의 경험을 떠올리며 질문을 던질 수 있습니다.
+                </p>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    # 구분선 추가
-    st.divider()
-    
-    # 스테이지 2 - 다름을 이해하기
+
+    # 2단계: 다름을 이해하기
     st.markdown("""
-    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
-        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">2</div>
-        <div style="flex: 1;">
-            <h3 style="margin-top: 0; color: #333333;">📌 찬반 논거 아이디어</h3>
-            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
-                <p style="margin: 0; color: #333333;">서로 다른 생각을 더 깊이 이해하는 단계예요.</p>
-            </div>
-            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                <li>내 의견을 논리적으로 설명하기</li>
-                <li>친구들의 의견이 왜 그런지 이해하기</li>
-                <li>질문하고 답변하며 생각 나누기</li>
+    <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <h3>다름을 이해하기</h3>
+            <ul class="custom-list">
+                <li>질문과 반박을 통해 다양한 관점을 이해</li>
+                <li>자신의 주장을 논리적으로 펼치기</li>
+                <li>상대방의 주장을 주의 깊게 듣고 논리적 허점 파악</li>
+                <li>적절한 질문을 통해 상대방의 논리 검증</li>
             </ul>
-            <div style="background-color: #f0f0f0; padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
-                <p style="margin: 0; font-style: italic; font-size: 0.9rem;"><strong>예시:</strong> "스마트폰으로 수업 정보를 찾을 수 있어요"라는 의견과 
-                "스마트폰이 수업에 집중하는 것을 방해해요"라는 의견이 왜 나오는지 서로 이야기해봅니다.</p>
+            <div class="example-box">
+                <p style="font-size: 0.9em; font-style: italic; margin: 0;">
+                    <strong>예시:</strong> 학교 내 스마트폰 사용 금지 토론에서 찬성 측은 학업 집중도 향상을, 반대 측은 학습 도구로서의 활용 가능성을 근거로 제시합니다.
+                </p>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    # 구분선 추가
-    st.divider()
-    
-    # 스테이지 3 - 다름과 공존하기
+
+    # 3단계: 다름과 공존하기
     st.markdown("""
-    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
-        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">3</div>
-        <div style="flex: 1;">
-            <h3 style="margin-top: 0; color: #333333;">📌 의견 피드백 & 마무리</h3>
-            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
-                <p style="margin: 0; color: #333333;">서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.</p>
-            </div>
-            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                <li>서로의 의견을 존중하기</li>
-                <li>좋은 점들을 모아 새로운 해결책 생각하기</li>
-                <li>함께 성장하기</li>
+    <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            <h3>다름과 공존하기</h3>
+            <ul class="custom-list">
+                <li>공동의 이익을 위한 실질적인 해결책 모색</li>
+                <li>다양한 관점을 종합하고 서로의 의견을 존중</li>
+                <li>합의점을 찾아가는 과정을 경험</li>
+                <li>공동체에 도움이 되는 정책 제안 도출</li>
             </ul>
-            <div style="background-color: #f0f0f0; padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
-                <p style="margin: 0; font-style: italic; font-size: 0.9rem;"><strong>예시:</strong> "스마트폰은 수업 시간에는 꺼두고, 조사 활동이 필요할 때만 선생님 허락을 받고 사용하자"와 
-                같이 모두가 만족할 수 있는 방법을 찾습니다.</p>
+            <div class="example-box">
+                <p style="font-size: 0.9em; font-style: italic; margin: 0;">
+                    <strong>예시:</strong> 초등학교 급식 메뉴 토론에서 영양 균형, 학생 선호도, 환경 문제 등 다양한 요소를 고려하여 개선 방안을 함께 제안합니다.
+                </p>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    # 구분선 추가
-    st.divider()
+
+    # 교육 목표
+    st.markdown("""
+    <div class="card">
+        <h2 style="text-align: center; margin-bottom: 20px;">교육 목표</h2>
+    </div>
+    """, unsafe_allow_html=True)
+
+    goal_col1, goal_col2, goal_col3, goal_col4 = st.columns(4)
+
+    with goal_col1:
+        st.markdown(f"""
+        <div class="goal-card">
+            <div class="goal-icon">
+                {get_svg_icon("critical_thinking")}
+            </div>
+            <h3>비판적 사고력</h3>
+            <p style="font-size: 0.9em; margin-top: 10px;">이슈를 다양한 관점에서 분석하고 평가하는 능력 향상</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with goal_col2:
+        st.markdown(f"""
+        <div class="goal-card">
+            <div class="goal-icon">
+                {get_svg_icon("collaboration")}
+            </div>
+            <h3>협력적 문제 해결 능력</h3>
+            <p style="font-size: 0.9em; margin-top: 10px;">다양한 의견을 존중하며 함께 해결책을 모색하는 능력 함양</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with goal_col3:
+        st.markdown(f"""
+        <div class="goal-card">
+            <div class="goal-icon">
+                {get_svg_icon("diversity")}
+            </div>
+            <h3>다양성 존중</h3>
+            <p style="font-size: 0.9em; margin-top: 10px;">서로 다른 의견과 관점을 존중하고 이해하는 태도 배양</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with goal_col4:
+        st.markdown(f"""
+        <div class="goal-card">
+            <div class="goal-icon">
+                {get_svg_icon("citizen")}
+            </div>
+            <h3>민주 시민 역량</h3>
+            <p style="font-size: 0.9em; margin-top: 10px;">사회 문제에 관심을 갖고 책임감 있게 참여하는 시민 의식 함양</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # 토론 모형 적용 팁
+    with st.expander("토론 모형 적용 팁"):
+        st.markdown("""
+        ### 🌟 토론 수업 진행 팁
+        
+        1. **주제 선정**: 학생들의 관심사와 연결된 주제를 선택하거나, 다양한 관점에서 논의할 수 있는 쟁점을 고르세요.
+        
+        2. **자료 준비**: 다양한 관점의 자료를 미리 준비하여 학생들이 균형 잡힌 시각을 가질 수 있도록 지원하세요.
+        
+        3. **토론 규칙**: 상대방 의견 존중, 발언 시간 지키기, 논리적 근거 제시하기 등의 기본 규칙을 함께 정하세요.
+        
+        4. **교사의 역할**: 중립적인 입장에서 토론을 진행하며, 토론이 한쪽으로 치우치지 않도록 조정해주세요.
+        
+        5. **성찰 활동**: 토론 후에는 자신의 생각이 어떻게 변화했는지, 무엇을 배웠는지 성찰하는 시간을 가지세요.
+        """)
+
+    # 토론 주제 예시
+    with st.expander("초등학교 토론 주제 예시"):
+        st.markdown("""
+        ### 📚 초등학교 토론 주제 예시
+        
+        #### 학교생활 관련
+        - 학교에서 스마트폰 사용은 허용되어야 할까요?
+        - 교복(교칙)은 필요할까요?
+        - 방학 숙제는 없애야 할까요?
+        
+        #### 환경 및 사회 이슈
+        - 일회용 플라스틱은 금지해야 할까요?
+        - 로봇이 인간의 일자리를 대체하는 것은 좋은 일일까요?
+        - 반려동물 키우기는 제한되어야 할까요?
+        
+        #### 가치 및 윤리 관련
+        - SNS는 아이들에게 도움이 될까요, 해로울까요?
+        - 게임은 취미 활동으로 적절한가요?
+        - 어린이들도 자신의 모습을 꾸밀 권리가 있을까요?
+        """)
+
+    # 푸터
+    st.markdown("""
+    <div class="footer">
+        <p>© 2025 경기도교육청 | 다름과 공존하는 경기토론교육 모형</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     # 도구 안내 섹션
     st.success("""
