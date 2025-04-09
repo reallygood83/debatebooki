@@ -614,49 +614,88 @@ def get_gemini_response(prompt, model="gemini-2.0-flash"):
 
 # 앱 타이틀 및 설명 - 핑크색 배경 추가
 with st.container():
-    # 핑크색 배경 추가
+    # 스타일 추가
     st.markdown("""
     <style>
-    [data-testid="stAppViewContainer"] > div:first-child {
+    /* 전체 컨테이너 스타일 */
+    .main-header {
         background-color: #ffcdd2;
-        padding: 1.5em;
+        padding: 1.5rem;
         border-radius: 10px;
-        margin-bottom: 1em;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    /* 서브타이틀 스타일 */
+    .subtitle {
+        font-weight: bold;
+        font-size: 1.4rem;
+        margin: 1rem 0;
+        text-align: center;
+    }
+    
+    /* 숫자 원형 스타일 */
+    .number-circle {
+        background-color: #ffcdd2;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
+        margin: 0 auto;
+    }
+    
+    /* 섹션 제목 스타일 */
+    .section-title {
+        font-weight: bold;
+        color: #333333;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+    }
+    
+    /* 단계별 설명 컨테이너 */
+    .step-container {
+        background-color: #f8f8f8;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
     }
     </style>
+    
+    <div class="main-header">
+        <h1 style="margin: 0; font-size: 1.8rem; text-align: center;">
+            <span style="margin-right: 10px;">🦉</span>토론부기 - 지혜로운 토론 친구
+        </h1>
+        <p class="subtitle" style="margin-top: 0.7rem;">AI활용 경기 토론 수업 모형 지원 도구</p>
+    </div>
     """, unsafe_allow_html=True)
-    
-    # 중앙 정렬 구성
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.markdown("<h1 style='text-align: center; font-size: 2.5em; margin-bottom: 0;'>🦉</h1>", unsafe_allow_html=True)
-        st.markdown("<h2 style='text-align: center; margin-top: 0;'>토론부기 - 지혜로운 토론 친구</h2>", unsafe_allow_html=True)
-        
-        # 흰색 배경의 부제목
-        st.markdown("""
-        <div style='background-color: white; border-radius: 30px; padding: 8px 15px; width: fit-content; margin: 0 auto;'>
-            <p style='text-align: center; margin: 0; font-size: 0.9em;'>AI활용 경기 토론 수업 모형 지원 도구</p>
-        </div>
-        """, unsafe_allow_html=True)
 
-# 기능 설명을 카드 형태로 표시 - HTML 태그 제거하고 Streamlit 컴포넌트만 사용
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.markdown("### 📚 경기 토론 수업 모형")
-    st.caption("토론을 어떻게 하면 좋을지 3단계로 쉽게 알려줘요.")
+# 기능 설명을 카드 형태로 표시
+st.markdown("""
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+    <div style="flex: 1; min-width: 200px; background-color: #f8f8f8; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffcdd2;">
+        <div class="number-circle" style="background-color: #ffcdd2;">1</div>
+        <h3 style="text-align: center; margin-top: 0.5rem; color: #333333;">📌 토론 주제 추천</h3>
+        <p style="color: #555555; text-align: center;">다양한 생각이 있다는 것을 알아보는 단계예요.</p>
+    </div>
     
-with col2:
-    st.markdown("### 🔍 토론 주제 추천")
-    st.caption("관심 있는 것을 입력하면 재미있는 토론 주제를 추천해 줄게요!")
+    <div style="flex: 1; min-width: 200px; background-color: #f8f8f8; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffcdd2;">
+        <div class="number-circle" style="background-color: #ffcdd2;">2</div>
+        <h3 style="text-align: center; margin-top: 0.5rem; color: #333333;">📌 찬반 논거 아이디어</h3>
+        <p style="color: #555555; text-align: center;">서로 다른 생각을 더 깊이 이해하는 단계예요.</p>
+    </div>
     
-with col3:
-    st.markdown("### 💡 찬반 논거 아이디어")
-    st.caption("어떤 주제든 '찬성' 의견과 '반대' 의견을 모두 알려줘요.")
-    
-with col4:
-    st.markdown("### 📝 의견 피드백 받기")
-    st.caption("의견에 대한 조언을 받고, 함께 새로운 해결책을 만들어요.")
+    <div style="flex: 1; min-width: 200px; background-color: #f8f8f8; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffcdd2;">
+        <div class="number-circle" style="background-color: #ffcdd2;">3</div>
+        <h3 style="text-align: center; margin-top: 0.5rem; color: #333333;">📌 의견 피드백 & 마무리</h3>
+        <p style="color: #555555; text-align: center;">서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # 안내 메시지 
 st.info("아래 탭을 선택하여 각 기능을 사용해보세요! ✨")
@@ -684,70 +723,76 @@ with tab1:
     st.divider()
     
     # 스테이지 1 - 다름과 마주하기
-    col1, col2 = st.columns([1, 5])
-    
-    with col1:
-        st.markdown("## 1️⃣")
-        
-    with col2:
-        st.subheader("📌 토론 주제 추천")
-        st.info("다양한 생각이 있다는 것을 알아보는 단계예요.")
-        
-        st.markdown("- 토론 주제에 대해 처음 생각해보기")
-        st.markdown("- 친구들은 어떻게 생각하는지 듣기")
-        st.markdown("- 주제가 왜 중요한지 이해하기")
-    
-    # 예시 박스
-    st.caption("""
-    **예시:** "학교에서 스마트폰을 사용하는 것"에 대해 찬성하는 친구도 있고, 
-    반대하는 친구도 있다는 것을 알게 됩니다.
-    """)
+    st.markdown("""
+    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
+        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">1</div>
+        <div style="flex: 1;">
+            <h3 style="margin-top: 0; color: #333333;">📌 토론 주제 추천</h3>
+            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                <p style="margin: 0; color: #333333;">다양한 생각이 있다는 것을 알아보는 단계예요.</p>
+            </div>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>토론 주제에 대해 처음 생각해보기</li>
+                <li>친구들은 어떻게 생각하는지 듣기</li>
+                <li>주제가 왜 중요한지 이해하기</li>
+            </ul>
+            <div style="background-color: #f0f0f0; padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
+                <p style="margin: 0; font-style: italic; font-size: 0.9rem;"><strong>예시:</strong> "학교에서 스마트폰을 사용하는 것"에 대해 찬성하는 친구도 있고, 
+                반대하는 친구도 있다는 것을 알게 됩니다.</p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 구분선 추가
     st.divider()
     
     # 스테이지 2 - 다름을 이해하기
-    col1, col2 = st.columns([1, 5])
-    
-    with col1:
-        st.markdown("## 2️⃣")
-        
-    with col2:
-        st.subheader("📌 찬반 논거 아이디어")
-        st.info("서로 다른 생각을 더 깊이 이해하는 단계예요.")
-        
-        st.markdown("- 내 의견을 논리적으로 설명하기")
-        st.markdown("- 친구들의 의견이 왜 그런지 이해하기")
-        st.markdown("- 질문하고 답변하며 생각 나누기")
-    
-    # 예시 박스
-    st.caption("""
-    **예시:** "스마트폰으로 수업 정보를 찾을 수 있어요"라는 의견과 
-    "스마트폰이 수업에 집중하는 것을 방해해요"라는 의견이 왜 나오는지 서로 이야기해봅니다.
-    """)
+    st.markdown("""
+    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
+        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">2</div>
+        <div style="flex: 1;">
+            <h3 style="margin-top: 0; color: #333333;">📌 찬반 논거 아이디어</h3>
+            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                <p style="margin: 0; color: #333333;">서로 다른 생각을 더 깊이 이해하는 단계예요.</p>
+            </div>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>내 의견을 논리적으로 설명하기</li>
+                <li>친구들의 의견이 왜 그런지 이해하기</li>
+                <li>질문하고 답변하며 생각 나누기</li>
+            </ul>
+            <div style="background-color: #f0f0f0; padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
+                <p style="margin: 0; font-style: italic; font-size: 0.9rem;"><strong>예시:</strong> "스마트폰으로 수업 정보를 찾을 수 있어요"라는 의견과 
+                "스마트폰이 수업에 집중하는 것을 방해해요"라는 의견이 왜 나오는지 서로 이야기해봅니다.</p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 구분선 추가
     st.divider()
     
     # 스테이지 3 - 다름과 공존하기
-    col1, col2 = st.columns([1, 5])
-    
-    with col1:
-        st.markdown("## 3️⃣")
-        
-    with col2:
-        st.subheader("📌 의견 피드백 & 마무리")
-        st.info("서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.")
-        
-        st.markdown("- 서로의 의견을 존중하기")
-        st.markdown("- 좋은 점들을 모아 새로운 해결책 생각하기")
-        st.markdown("- 함께 성장하기")
-    
-    # 예시 박스
-    st.caption("""
-    **예시:** "스마트폰은 수업 시간에는 꺼두고, 조사 활동이 필요할 때만 선생님 허락을 받고 사용하자"와 
-    같이 모두가 만족할 수 있는 방법을 찾습니다.
-    """)
+    st.markdown("""
+    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
+        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">3</div>
+        <div style="flex: 1;">
+            <h3 style="margin-top: 0; color: #333333;">📌 의견 피드백 & 마무리</h3>
+            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                <p style="margin: 0; color: #333333;">서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.</p>
+            </div>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>서로의 의견을 존중하기</li>
+                <li>좋은 점들을 모아 새로운 해결책 생각하기</li>
+                <li>함께 성장하기</li>
+            </ul>
+            <div style="background-color: #f0f0f0; padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
+                <p style="margin: 0; font-style: italic; font-size: 0.9rem;"><strong>예시:</strong> "스마트폰은 수업 시간에는 꺼두고, 조사 활동이 필요할 때만 선생님 허락을 받고 사용하자"와 
+                같이 모두가 만족할 수 있는 방법을 찾습니다.</p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 구분선 추가
     st.divider()
@@ -1045,6 +1090,7 @@ with tab4:
 # 5. 토론 마무리 활동 도구
 # ============================
 with tab5:
+    # 마무리 활동 TIP
     st.header("🤝 토론 마무리하기")
     
     # 토론 마무리 활동 소개 (중앙 정렬)
@@ -1055,86 +1101,101 @@ with tab5:
     st.divider()
     
     # 팁 1
-    col1, col2 = st.columns([1, 5])
-    
-    with col1:
-        st.markdown("## 1️⃣")
-        
-    with col2:
-        st.subheader("요약하기")
-        st.info("토론에서 나온 중요한 생각들을 정리해 봐요.")
-        
-    # 팁 1 설명
-    st.markdown("- 찬성/반대 입장에서 나온 주요 의견들을 간단히 정리해 봅니다.")
-    st.markdown("- 가장 설득력 있었던 의견은 무엇인지 생각해 봅니다.")
+    st.markdown("""
+    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
+        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">1</div>
+        <div style="flex: 1;">
+            <h3 style="margin-top: 0; color: #333333;">요약하기</h3>
+            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                <p style="margin: 0; color: #333333;">토론에서 나온 중요한 생각들을 정리해 봐요.</p>
+            </div>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>찬성/반대 입장에서 나온 주요 의견들을 간단히 정리해 봅니다.</li>
+                <li>가장 설득력 있었던 의견은 무엇인지 생각해 봅니다.</li>
+            </ul>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 구분선 추가
     st.divider()
     
     # 팁 2
-    col1, col2 = st.columns([1, 5])
-    
-    with col1:
-        st.markdown("## 2️⃣")
-        
-    with col2:
-        st.subheader("공감하기")
-        st.info("내 생각과 다른 의견에서도 배울 점을 찾아봐요.")
-        
-    # 팁 2 설명
-    st.markdown("- 나와 다른 생각을 들었을 때 어떤 느낌이 들었는지 나눠 봅니다.")
-    st.markdown("- 다른 친구의 의견 중 '좋은 점'을 찾아 이야기해 봅니다.")
+    st.markdown("""
+    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
+        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">2</div>
+        <div style="flex: 1;">
+            <h3 style="margin-top: 0; color: #333333;">공감하기</h3>
+            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                <p style="margin: 0; color: #333333;">내 생각과 다른 의견에서도 배울 점을 찾아봐요.</p>
+            </div>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>나와 다른 생각을 들었을 때 어떤 느낌이 들었는지 나눠 봅니다.</li>
+                <li>다른 친구의 의견 중 '좋은 점'을 찾아 이야기해 봅니다.</li>
+            </ul>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 구분선 추가
     st.divider()
     
     # 팁 3
-    col1, col2 = st.columns([1, 5])
-    
-    with col1:
-        st.markdown("## 3️⃣")
-        
-    with col2:
-        st.subheader("질문하기")
-        st.info('"왜 그렇게 생각해요?", "예시를 들어줄래요?"')
-        
-    # 팁 3 설명
-    st.markdown("- 더 알고 싶은 내용이 있다면 질문을 통해 대화를 이어갑니다.")
-    st.markdown("- 열린 질문을 통해 다양한 생각을 더 깊이 탐색해 봅니다.")
+    st.markdown("""
+    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
+        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">3</div>
+        <div style="flex: 1;">
+            <h3 style="margin-top: 0; color: #333333;">질문하기</h3>
+            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                <p style="margin: 0; color: #333333;">"왜 그렇게 생각해요?", "예시를 들어줄래요?"</p>
+            </div>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>더 알고 싶은 내용이 있다면 질문을 통해 대화를 이어갑니다.</li>
+                <li>열린 질문을 통해 다양한 생각을 더 깊이 탐색해 봅니다.</li>
+            </ul>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 구분선 추가
     st.divider()
     
     # 팁 4
-    col1, col2 = st.columns([1, 5])
-    
-    with col1:
-        st.markdown("## 4️⃣")
-        
-    with col2:
-        st.subheader("존중하기")
-        st.info("다른 의견도 소중해요!")
-        
-    # 팁 4 설명
-    st.markdown("- 모든 의견에 감사하는 마음을 표현합니다.")
-    st.markdown("- 서로 다른 생각이 있어 더 풍부한 논의가 가능했음을 알아봅니다.")
+    st.markdown("""
+    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
+        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">4</div>
+        <div style="flex: 1;">
+            <h3 style="margin-top: 0; color: #333333;">존중하기</h3>
+            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                <p style="margin: 0; color: #333333;">다른 의견도 소중해요!</p>
+            </div>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>모든 의견에 감사하는 마음을 표현합니다.</li>
+                <li>서로 다른 생각이 있어 더 풍부한 논의가 가능했음을 알아봅니다.</li>
+            </ul>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 구분선 추가
     st.divider()
     
     # 팁 5
-    col1, col2 = st.columns([1, 5])
-    
-    with col1:
-        st.markdown("## 5️⃣")
-        
-    with col2:
-        st.subheader("마음 열기")
-        st.info("내 생각이 바뀔 수도 있어요.")
-        
-    # 팁 5 설명
-    st.markdown("- 토론 후 내 생각이 어떻게 변했는지 이야기해 봅니다.")
-    st.markdown("- 다른 사람의 의견을 듣고 새롭게 배운 점을 나눠 봅니다.")
+    st.markdown("""
+    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
+        <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">5</div>
+        <div style="flex: 1;">
+            <h3 style="margin-top: 0; color: #333333;">마음 열기</h3>
+            <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                <p style="margin: 0; color: #333333;">내 생각이 바뀔 수도 있어요.</p>
+            </div>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>토론 후 내 생각이 어떻게 변했는지 이야기해 봅니다.</li>
+                <li>다른 사람의 의견을 듣고 새롭게 배운 점을 나눠 봅니다.</li>
+            </ul>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 구분선 추가
     st.divider()
