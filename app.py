@@ -434,70 +434,27 @@ with st.sidebar:
     st.markdown("## 🦉 토론부기의 지혜로운 꿀팁!")
     
     # 팁 1
-    st.markdown("""
-    <div class="tip-item">
-        <div style="display: flex; align-items: center;">
-            <div style="background-color: #ffb7c5; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; margin-right: 10px; font-weight: bold;">1</div>
-            <h3 style="margin: 0; color: #66545e; font-weight: bold;">경청하기</h3>
-        </div>
-        <p style="margin-left: 38px; margin-top: 5px;">부엉이는 귀가 좋아서 잘 들어요. 친구들 말도 집중해서 들어보세요.</p>
-    </div>
-    <div style="border-bottom: 1px dashed #ffd1dc; margin: 10px 0;"></div>
-    """, unsafe_allow_html=True)
+    st.subheader("1. 경청하기")
+    st.info("부엉이는 귀가 좋아서 잘 들어요. 친구들 말도 집중해서 들어보세요.")
     
     # 팁 2
-    st.markdown("""
-    <div class="tip-item">
-        <div style="display: flex; align-items: center;">
-            <div style="background-color: #ffd1dc; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; margin-right: 10px; font-weight: bold;">2</div>
-            <h3 style="margin: 0; color: #66545e; font-weight: bold;">근거 말하기</h3>
-        </div>
-        <p style="margin-left: 38px; margin-top: 5px;">"왜냐하면~", "예를 들면~"으로 이유를 설명하세요.</p>
-    </div>
-    <div style="border-bottom: 1px dashed #ffd1dc; margin: 10px 0;"></div>
-    """, unsafe_allow_html=True)
+    st.subheader("2. 근거 말하기")
+    st.info('"왜냐하면~", "예를 들면~"으로 이유를 설명하세요.')
     
     # 팁 3
-    st.markdown("""
-    <div class="tip-item">
-        <div style="display: flex; align-items: center;">
-            <div style="background-color: #ffe0e6; color: #66545e; border-radius: 50%; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; margin-right: 10px; font-weight: bold;">3</div>
-            <h3 style="margin: 0; color: #66545e; font-weight: bold;">질문하기</h3>
-        </div>
-        <p style="margin-left: 38px; margin-top: 5px;">"왜 그렇게 생각해요?", "예시를 들어줄래요?"</p>
-    </div>
-    <div style="border-bottom: 1px dashed #ffd1dc; margin: 10px 0;"></div>
-    """, unsafe_allow_html=True)
+    st.subheader("3. 질문하기")
+    st.info('"왜 그렇게 생각해요?", "예시를 들어줄래요?"')
     
     # 팁 4
-    st.markdown("""
-    <div class="tip-item">
-        <div style="display: flex; align-items: center;">
-            <div style="background-color: #fff0f5; color: #66545e; border-radius: 50%; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; margin-right: 10px; font-weight: bold;">4</div>
-            <h3 style="margin: 0; color: #66545e; font-weight: bold;">존중하기</h3>
-        </div>
-        <p style="margin-left: 38px; margin-top: 5px;">다른 의견도 소중해요!</p>
-    </div>
-    <div style="border-bottom: 1px dashed #ffd1dc; margin: 10px 0;"></div>
-    """, unsafe_allow_html=True)
+    st.subheader("4. 존중하기")
+    st.info("다른 의견도 소중해요!")
     
     # 팁 5
-    st.markdown("""
-    <div class="tip-item">
-        <div style="display: flex; align-items: center;">
-            <div style="background-color: #fff5f8; color: #66545e; border-radius: 50%; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; margin-right: 10px; font-weight: bold;">5</div>
-            <h3 style="margin: 0; color: #66545e; font-weight: bold;">마음 열기</h3>
-        </div>
-        <p style="margin-left: 38px; margin-top: 5px;">내 생각이 바뀔 수도 있어요.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.subheader("5. 마음 열기")
+    st.info("내 생각이 바뀔 수도 있어요.")
     
     # 마무리 메시지
-    st.markdown("""
-    <div style="background-color: #fff5f2; padding: 10px; border-radius: 5px; margin-top: 15px; text-align: center;">
-        <p style="margin: 0; font-style: italic; color: #66545e;">토론은 정답을 찾는 게 아니라, 여러 생각을 나누는 거예요! 🦉✨</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.success("토론은 정답을 찾는 게 아니라, 여러 생각을 나누는 거예요! 🦉✨")
     
     # 선생님을 위한 도움말
     with st.expander("선생님을 위한 도움말"):
@@ -656,44 +613,30 @@ def get_gemini_response(prompt, model="gemini-2.0-flash"):
 # ============================
 
 # 앱 타이틀 및 설명
-st.markdown('<div style="text-align: center; margin-bottom: 2rem;">', unsafe_allow_html=True)
-st.markdown('<div class="big-emoji">🦉</div>', unsafe_allow_html=True)
 st.title("토론부기 - 지혜로운 토론 친구")
-st.markdown('<div class="subtitle">AI활용 경기 토론 수업 모형 지원 도구</div>', unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
+st.caption("AI활용 경기 토론 수업 모형 지원 도구")
 
-# 기능 설명을 카드 형태로 표시
-st.markdown("""
-<!-- Feature description cards -->
-<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-    <div style="flex: 1; min-width: 200px; background-color: white; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffb7c5; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-        <h3 style="margin-top:0; color: #66545e;">📚 경기 토론 수업 모형</h3>
-        <p style="margin-bottom:0; color: #66545e;">토론을 어떻게 하면 좋을지 3단계로 쉽게 알려줘요.</p>
-    </div>
-    
-    <div style="flex: 1; min-width: 200px; background-color: white; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffd1dc; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-        <h3 style="margin-top:0; color: #66545e;">🔍 토론 주제 추천</h3>
-        <p style="margin-bottom:0; color: #66545e;">관심 있는 것을 입력하면 재미있는 토론 주제를 추천해 줄게요!</p>
-    </div>
-    
-    <div style="flex: 1; min-width: 200px; background-color: white; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffe0e6; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-        <h3 style="margin-top:0; color: #66545e;">💡 찬반 논거 아이디어</h3>
-        <p style="margin-bottom:0; color: #66545e;">어떤 주제든 '찬성' 의견과 '반대' 의견을 모두 알려줘요.</p>
-    </div>
-    
-    <div style="flex: 1; min-width: 200px; background-color: white; padding: 1rem; border-radius: 12px; border-left: 5px solid #fff0f5; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-        <h3 style="margin-top:0; color: #66545e;">📝 의견 피드백 받기</h3>
-        <p style="margin-bottom:0; color: #66545e;">의견에 대한 조언을 받고, 함께 새로운 해결책을 만들어요.</p>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+# 기능 설명을 카드 형태로 표시 - HTML 태그 제거하고 Streamlit 컴포넌트만 사용
+col1, col2, col3, col4 = st.columns(4)
 
-# 안내 메시지
-st.markdown("""
-<div style="background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: center; border-left: 5px solid #a5d8ff;">
-    <p style="font-weight:bold; font-size:1.2rem; margin:0; color: #66545e;">아래 탭을 선택하여 각 기능을 사용해보세요! ✨</p>
-</div>
-""", unsafe_allow_html=True)
+with col1:
+    st.markdown("### 📚 경기 토론 수업 모형")
+    st.caption("토론을 어떻게 하면 좋을지 3단계로 쉽게 알려줘요.")
+    
+with col2:
+    st.markdown("### 🔍 토론 주제 추천")
+    st.caption("관심 있는 것을 입력하면 재미있는 토론 주제를 추천해 줄게요!")
+    
+with col3:
+    st.markdown("### 💡 찬반 논거 아이디어")
+    st.caption("어떤 주제든 '찬성' 의견과 '반대' 의견을 모두 알려줘요.")
+    
+with col4:
+    st.markdown("### 📝 의견 피드백 받기")
+    st.caption("의견에 대한 조언을 받고, 함께 새로운 해결책을 만들어요.")
+
+# 안내 메시지 
+st.info("아래 탭을 선택하여 각 기능을 사용해보세요! ✨")
 
 # 탭 메뉴로 기능 분리
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
@@ -852,18 +795,10 @@ with tab2:
                     
                     # 결과를 컨테이너에 표시 (더 넓은 크기로)
                     with result_container:
-                        st.markdown(f"""
-                        <div class="result-header">
-                            <h3>'{topic_interest}'에 관한 토론 주제 추천 📋</h3>
-                        </div>
-                        """, unsafe_allow_html=True)
+                        st.subheader(f"'{topic_interest}'에 관한 토론 주제 추천 📋")
                         
-                        # 넓고, 높이 제한 없는 결과 컨테이너
-                        st.markdown(f"""
-                        <div class="result-display">
-                            {response}
-                        </div>
-                        """, unsafe_allow_html=True)
+                        # Streamlit의 기본 컴포넌트로 결과 표시
+                        st.markdown(response)
                         
                         st.success("이 주제들 중에 마음에 드는 것이 있다면, '찬반 논거 아이디어 보기' 탭을 선택해 보세요! 👇")
                 else:
@@ -976,18 +911,10 @@ with tab3:
                     
                     # 결과를 컨테이너에 표시 (더 넓은 크기로)
                     with result_container:
-                        st.markdown(f"""
-                        <div class="result-header">
-                            <h3>'{current_argument_topic}'에 대한 찬반 논거 아이디어 ⚖️</h3>
-                        </div>
-                        """, unsafe_allow_html=True)
+                        st.subheader(f"'{current_argument_topic}'에 대한 찬반 논거 아이디어 ⚖️")
                         
-                        # 넓고, 높이 제한 없는 결과 컨테이너
-                        st.markdown(f"""
-                        <div class="result-display">
-                            {response}
-                        </div>
-                        """, unsafe_allow_html=True)
+                        # Streamlit의 기본 컴포넌트로 결과 표시
+                        st.markdown(response)
                         
                         st.success("이제 이 아이디어들을 바탕으로 나만의 의견을 만들어 보세요! '의견 피드백 받기' 탭으로 이동해 의견을 확인받을 수 있어요 👇")
                 else:
@@ -1081,25 +1008,15 @@ with tab4:
 
     # 예시 의견 보여주기
     with st.expander("의견 작성이 어렵다면? 예시를 참고해 보세요!", expanded=False):
-        st.markdown("""
-        <div style="background-color: #fff5f2; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; border-left: 5px solid #ffb7c5;">
-        <h3 style="margin-top:0; color: #66545e;">예시 1: 학교 스마트폰 사용에 대한 의견</h3>
-        
-        <blockquote style="background-color: white; padding: 1rem; border-radius: 8px; border-left: 3px solid #ffb7c5;">
+        st.subheader("예시 1: 학교 스마트폰 사용에 대한 의견")
+        st.info("""
         저는 학교에서 스마트폰 사용을 제한적으로 허용하는 것이 좋다고 생각해요. 왜냐하면 긴급 상황에 부모님께 연락할 수 있고, 수업 중에 궁금한 것을 바로 찾아볼 수 있기 때문이에요. 하지만 완전히 자유롭게 사용하면 게임이나 SNS에 집중해서 수업에 방해가 될 수 있어요. 그래서 꼭 필요할 때만 선생님 허락을 받고 사용하는 방법이 좋다고 생각해요.
-        </blockquote>
-        </div>
+        """)
         
-        <div style="background-color: #ffeef2; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; border-left: 5px solid #ffd1dc;">
-        <h3 style="margin-top:0; color: #66545e;">예시 2: 로봇 반려동물에 대한 의견</h3>
-        
-        <blockquote style="background-color: white; padding: 1rem; border-radius: 8px; border-left: 3px solid #ffd1dc;">
+        st.subheader("예시 2: 로봇 반려동물에 대한 의견")
+        st.info("""
         저는 로봇 반려동물보다 진짜 반려동물이 더 좋다고 생각해요. 진짜 반려동물은 정말 나를 좋아하고 감정을 표현할 수 있어요. 로봇은 프로그램대로만 움직이니까 진짜 정이 들기 어려울 것 같아요. 하지만 알레르기가 있거나 돌볼 시간이 부족한 사람들에게는 로봇 반려동물이 좋은 선택일 수 있다고 생각해요.
-        </blockquote>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    st.markdown('</div>', unsafe_allow_html=True)
+        """)
 
 # ============================
 # 5. 토론 마무리 활동 도구
@@ -1221,11 +1138,5 @@ with tab5:
         """)
 
 # 푸터 추가
-footer_html = """
-<div style="position: relative; bottom: 0; width: 100%; text-align: center; padding: 10px; margin-top: 2rem; background-color: #fff5f2; border-radius: 12px;">
-    <p style="margin: 0; font-size: 12px; color: #66545e;">
-        © 2025 안양 박달초 김문정 | ❤️ <a href="https://www.youtube.com/@%EB%B0%B0%EC%9B%80%EC%9D%98%EB%8B%AC%EC%9D%B8-p5v/videos" target="_blank" style="color: #66545e; text-decoration: underline;">유튜브 배움의 달인</a>
-    </p>
-</div>
-"""
-st.markdown(footer_html, unsafe_allow_html=True)
+st.divider()
+st.caption("© 2025 안양 박달초 김문정 | ❤️ [유튜브 배움의 달인](https://www.youtube.com/@%EB%B0%B0%EC%9B%80%EC%9D%98%EB%8B%AC%EC%9D%B8-p5v/videos)")
