@@ -239,9 +239,11 @@ st.markdown("""
     .stTabs [data-baseweb="tab-list"] {
         gap: 0.5rem;
         background-color: #fff5f2;
-        padding: 0.5rem;
+        padding: 0.8rem;
         border-radius: 50px;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 12px rgba(255, 183, 197, 0.2);
+        border: 2px solid rgba(255, 183, 197, 0.3);
     }
     
     .stTabs [data-baseweb="tab"] {
@@ -250,10 +252,12 @@ st.markdown("""
         padding: 0.6rem 1.2rem !important;
         font-family: 'Jua', sans-serif;
         color: #66545e !important;
-        font-size: 1.2rem !important;  /* 글자 크기 증가 */
+        font-size: 1.4rem !important;  /* 글자 크기 증가 */
         font-weight: bold !important;  /* 볼드 처리 */
         border: none !important;
         transition: all 0.3s ease !important;  /* 부드러운 전환 효과 */
+        letter-spacing: 0.05em !important;  /* 자간 추가 */
+        text-shadow: 0 1px 1px rgba(255, 183, 197, 0.2) !important;  /* 텍스트 그림자 추가 */
     }
     
     .stTabs [data-baseweb="tab"]:hover {
@@ -265,7 +269,9 @@ st.markdown("""
     .stTabs [data-baseweb="tab"][aria-selected="true"] {
         background-color: #ffb7c5 !important;
         color: white !important;
-        box-shadow: 0 2px 4px rgba(255, 183, 197, 0.3);
+        box-shadow: 0 4px 8px rgba(255, 183, 197, 0.4) !important;
+        transform: translateY(-2px) !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
     }
     
     .stTabs [data-baseweb="tab-panel"] {
@@ -691,106 +697,104 @@ st.markdown("""
 
 # 탭 메뉴로 기능 분리
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "📚 경기 토론 수업 모형", 
-    "🔍 토론 주제 추천", 
-    "💡 찬반 논거 아이디어", 
-    "📝 의견 피드백 받기",
-    "🤝 토론 마무리하기"
+    "**📚 경기 토론 수업 모형**", 
+    "**🔍 토론 주제 추천**", 
+    "**💡 찬반 논거 아이디어**", 
+    "**📝 의견 피드백 받기**",
+    "**🤝 토론 마무리하기**"
 ])
 
 # ============================
 # 1. 경기 토론 수업 모형 안내 기능
 # ============================
 with tab1:
-    st.markdown('<div class="card-container">', unsafe_allow_html=True)
     st.header("📚 경기 토론 수업 모형 알아보기")
-
+    
     # 경기 토론 수업 모형 소개 (중앙 정렬)
-    st.markdown("""
-    <div style="text-align:center; margin-bottom:20px;">
-        <h2 style="color:#66545e; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
-            😀 경기 토론 수업 모형은 이렇게 진행해요!
-        </h2>
-        <p style="font-size:1.2rem;">친구들과 함께 토론할 때 어떻게 하면 좋을지 알려주는 방법이에요.<br>
-        세 가지 단계로 이루어져 있답니다!</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("### 😀 경기 토론 수업 모형은 이렇게 진행해요!")
+    st.markdown("친구들과 함께 토론할 때 어떻게 하면 좋을지 알려주는 방법이에요. 세 가지 단계로 이루어져 있답니다!")
+    
+    # 구분선 추가
+    st.divider()
     
     # 스테이지 1 - 다름과 마주하기
-    with st.container():
-        st.write("##")  # 간격 추가
-        col1, col2 = st.columns([1, 5])
+    col1, col2 = st.columns([1, 5])
+    
+    with col1:
+        st.markdown("""
+        <div style="background-color: #ffb7c5; width: 50px; height: 50px; border-radius: 50%; 
+        display: flex; justify-content: center; align-items: center; color: white; 
+        font-weight: bold; font-size: 20px; margin: 0 auto;">1</div>
+        """, unsafe_allow_html=True)
         
-        with col1:
-            st.markdown("""
-            <div style="background-color: #ffb7c5; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; font-size: 20px; margin: 0 auto;">
-            1
-            </div>
-            """, unsafe_allow_html=True)
-            
-        with col2:
-            st.subheader("다름과 마주하기")
-            st.info("다양한 생각이 있다는 것을 알아보는 단계예요.")
-            
-            st.markdown("- 토론 주제에 대해 처음 생각해보기")
-            st.markdown("- 친구들은 어떻게 생각하는지 듣기")
-            st.markdown("- 주제가 왜 중요한지 이해하기")
-            
-            st.caption("**예시:** \"학교에서 스마트폰을 사용하는 것\"에 대해 찬성하는 친구도 있고, 반대하는 친구도 있다는 것을 알게 됩니다.")
+    with col2:
+        st.subheader("다름과 마주하기")
+        st.info("다양한 생각이 있다는 것을 알아보는 단계예요.")
+        st.markdown("- 토론 주제에 대해 처음 생각해보기")
+        st.markdown("- 친구들은 어떻게 생각하는지 듣기")
+        st.markdown("- 주제가 왜 중요한지 이해하기")
+    
+    # 예시 박스
+    st.caption("""
+    **예시:** "학교에서 스마트폰을 사용하는 것"에 대해 찬성하는 친구도 있고, 
+    반대하는 친구도 있다는 것을 알게 됩니다.
+    """)
     
     # 구분선 추가
     st.divider()
     
     # 스테이지 2 - 다름을 이해하기
-    with st.container():
-        col1, col2 = st.columns([1, 5])
+    col1, col2 = st.columns([1, 5])
+    
+    with col1:
+        st.markdown("""
+        <div style="background-color: #ffd1dc; width: 50px; height: 50px; border-radius: 50%; 
+        display: flex; justify-content: center; align-items: center; color: white; 
+        font-weight: bold; font-size: 20px; margin: 0 auto;">2</div>
+        """, unsafe_allow_html=True)
         
-        with col1:
-            st.markdown("""
-            <div style="background-color: #ffd1dc; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; font-size: 20px; margin: 0 auto;">
-            2
-            </div>
-            """, unsafe_allow_html=True)
-            
-        with col2:
-            st.subheader("다름을 이해하기")
-            st.info("서로 다른 생각을 더 깊이 이해하는 단계예요.")
-            
-            st.markdown("- 내 의견을 논리적으로 설명하기")
-            st.markdown("- 친구들의 의견이 왜 그런지 이해하기")
-            st.markdown("- 질문하고 답변하며 생각 나누기")
-            
-            st.caption("**예시:** \"스마트폰으로 수업 정보를 찾을 수 있어요\"라는 의견과 \"스마트폰이 수업에 집중하는 것을 방해해요\"라는 의견이 왜 나오는지 서로 이야기해봅니다.")
+    with col2:
+        st.subheader("다름을 이해하기")
+        st.info("서로 다른 생각을 더 깊이 이해하는 단계예요.")
+        st.markdown("- 내 의견을 논리적으로 설명하기")
+        st.markdown("- 친구들의 의견이 왜 그런지 이해하기")
+        st.markdown("- 질문하고 답변하며 생각 나누기")
+    
+    # 예시 박스
+    st.caption("""
+    **예시:** "스마트폰으로 수업 정보를 찾을 수 있어요"라는 의견과 
+    "스마트폰이 수업에 집중하는 것을 방해해요"라는 의견이 왜 나오는지 서로 이야기해봅니다.
+    """)
     
     # 구분선 추가
     st.divider()
     
     # 스테이지 3 - 다름과 공존하기
-    with st.container():
-        col1, col2 = st.columns([1, 5])
-        
-        with col1:
-            st.markdown("""
-            <div style="background-color: #ffe0e6; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #66545e; font-weight: bold; font-size: 20px; margin: 0 auto;">
-            3
-            </div>
-            """, unsafe_allow_html=True)
-            
-        with col2:
-            st.subheader("다름과 공존하기")
-            st.info("서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.")
-            
-            st.markdown("- 서로의 의견을 존중하기")
-            st.markdown("- 좋은 점들을 모아 새로운 해결책 생각하기")
-            st.markdown("- 함께 성장하기")
-            
-            st.caption("**예시:** \"스마트폰은 수업 시간에는 꺼두고, 조사 활동이 필요할 때만 선생님 허락을 받고 사용하자\"와 같이 모두가 만족할 수 있는 방법을 찾습니다.")
+    col1, col2 = st.columns([1, 5])
     
-    # 구분선 추가
-    st.divider()
-
+    with col1:
+        st.markdown("""
+        <div style="background-color: #ffe0e6; width: 50px; height: 50px; border-radius: 50%; 
+        display: flex; justify-content: center; align-items: center; color: #66545e; 
+        font-weight: bold; font-size: 20px; margin: 0 auto;">3</div>
+        """, unsafe_allow_html=True)
+        
+    with col2:
+        st.subheader("다름과 공존하기")
+        st.info("서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.")
+        st.markdown("- 서로의 의견을 존중하기")
+        st.markdown("- 좋은 점들을 모아 새로운 해결책 생각하기")
+        st.markdown("- 함께 성장하기")
+    
+    # 예시 박스
+    with st.container():
+        st.caption("""
+        **예시:** "스마트폰은 수업 시간에는 꺼두고, 조사 활동이 필요할 때만 선생님 허락을 받고 사용하자"와 
+        같이 모두가 만족할 수 있는 방법을 찾습니다.
+        """)
+    
     # 도구 안내 섹션
-    st.write("##")  # 간격 추가
+    st.write("---")
     st.success("""
     ### 👉 이 도구는 위 세 단계 모두 도움을 줄 수 있어요!
     
