@@ -247,11 +247,19 @@ st.markdown("""
     .stTabs [data-baseweb="tab"] {
         background-color: transparent !important;
         border-radius: 50px !important;
-        padding: 0.5rem 1rem !important;
+        padding: 0.6rem 1.2rem !important;
         font-family: 'Jua', sans-serif;
         color: #66545e !important;
-        font-size: 1rem;
+        font-size: 1.2rem !important;  /* 글자 크기 증가 */
+        font-weight: bold !important;  /* 볼드 처리 */
         border: none !important;
+        transition: all 0.3s ease !important;  /* 부드러운 전환 효과 */
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: rgba(255, 183, 197, 0.3) !important;  /* 호버 시 배경색 변경 */
+        transform: translateY(-2px) !important;  /* 호버 시 약간 위로 올라가는 효과 */
+        box-shadow: 0 4px 8px rgba(255, 183, 197, 0.2) !important;  /* 호버 시 그림자 효과 */
     }
     
     .stTabs [data-baseweb="tab"][aria-selected="true"] {
@@ -403,10 +411,9 @@ st.markdown("""
 # ============================
 with st.sidebar:
     st.markdown('<div class="big-emoji">🦉</div>', unsafe_allow_html=True)
-    st.markdown('<h2 style="text-align: center; margin-top: 0;">🦉 토론부기: 지혜로운 친구</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center; margin-top: 0;">🦉 토론부기 사용법</h2>', unsafe_allow_html=True)
     
     # 앱 사용법
-    st.markdown("## 앱 사용법")
     st.markdown("""
     안녕하세요! 저는 토론부기예요. 토론 수업을 더 재미있고 효과적으로 만들어 줄 친구랍니다.
     
@@ -698,10 +705,10 @@ with tab1:
     st.markdown('<div class="card-container">', unsafe_allow_html=True)
     st.header("📚 경기 토론 수업 모형 알아보기")
 
-    # 경기 토론 수업 모형 설명 
+    # 경기 토론 수업 모형 소개 (중앙 정렬)
     st.markdown("""
     <div style="text-align:center; margin-bottom:20px;">
-        <h2 style="color:#66545e; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); background:none; box-shadow:none;">
+        <h2 style="color:#66545e; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
             😀 경기 토론 수업 모형은 이렇게 진행해요!
         </h2>
         <p style="font-size:1.2rem;">친구들과 함께 토론할 때 어떻게 하면 좋을지 알려주는 방법이에요.<br>
@@ -709,60 +716,92 @@ with tab1:
     </div>
     """, unsafe_allow_html=True)
     
-    # 1단계 설명 - 카드 형태로 시각적 표현
-    st.markdown("""
-    <div style="background-color: #fff5f2; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; border-left: 5px solid #ffb7c5;">
-        <h3 style="color:#66545e; margin-top:0; border-bottom: 2px dashed #ffb7c5; padding-bottom: 0.5rem;">1️⃣ 다름과 마주하기</h3>
-        <p>다양한 생각이 있다는 것을 알아보는 단계예요.</p>
-        <ul>
-            <li>토론 주제에 대해 처음 생각해보기</li>
-            <li>친구들은 어떻게 생각하는지 듣기</li>
-            <li>주제가 왜 중요한지 이해하기</li>
-        </ul>
-        <p><b>예시:</b> "학교에서 스마트폰을 사용하는 것"에 대해 찬성하는 친구도 있고, 반대하는 친구도 있다는 것을 알게 됩니다.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    # 스테이지 1 - 다름과 마주하기
+    with st.container():
+        st.write("##")  # 간격 추가
+        col1, col2 = st.columns([1, 5])
+        
+        with col1:
+            st.markdown("""
+            <div style="background-color: #ffb7c5; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; font-size: 20px; margin: 0 auto;">
+            1
+            </div>
+            """, unsafe_allow_html=True)
+            
+        with col2:
+            st.subheader("다름과 마주하기")
+            st.info("다양한 생각이 있다는 것을 알아보는 단계예요.")
+            
+            st.markdown("- 토론 주제에 대해 처음 생각해보기")
+            st.markdown("- 친구들은 어떻게 생각하는지 듣기")
+            st.markdown("- 주제가 왜 중요한지 이해하기")
+            
+            st.caption("**예시:** \"학교에서 스마트폰을 사용하는 것\"에 대해 찬성하는 친구도 있고, 반대하는 친구도 있다는 것을 알게 됩니다.")
     
-    # 2단계 설명
-    st.markdown("""
-    <div style="background-color: #ffeef2; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; border-left: 5px solid #ffd1dc;">
-        <h3 style="color:#66545e; margin-top:0; border-bottom: 2px dashed #ffd1dc; padding-bottom: 0.5rem;">2️⃣ 다름을 이해하기</h3>
-        <p>서로 다른 생각을 더 깊이 이해하는 단계예요.</p>
-        <ul>
-            <li>내 의견을 논리적으로 설명하기</li>
-            <li>친구들의 의견이 왜 그런지 이해하기</li>
-            <li>질문하고 답변하며 생각 나누기</li>
-        </ul>
-        <p><b>예시:</b> "스마트폰으로 수업 정보를 찾을 수 있어요"라는 의견과 "스마트폰이 수업에 집중하는 것을 방해해요"라는 의견이 왜 나오는지 서로 이야기해봅니다.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    # 구분선 추가
+    st.divider()
     
-    # 3단계 설명
-    st.markdown("""
-    <div style="background-color: #fff9f9; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; border-left: 5px solid #ffe0e6;">
-        <h3 style="color:#66545e; margin-top:0; border-bottom: 2px dashed #ffe0e6; padding-bottom: 0.5rem;">3️⃣ 다름과 공존하기</h3>
-        <p>서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.</p>
-        <ul>
-            <li>서로의 의견을 존중하기</li>
-            <li>좋은 점들을 모아 새로운 해결책 생각하기</li>
-            <li>함께 성장하기</li>
-        </ul>
-        <p><b>예시:</b> "스마트폰은 수업 시간에는 꺼두고, 조사 활동이 필요할 때만 선생님 허락을 받고 사용하자"와 같이 모두가 만족할 수 있는 방법을 찾습니다.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    # 스테이지 2 - 다름을 이해하기
+    with st.container():
+        col1, col2 = st.columns([1, 5])
+        
+        with col1:
+            st.markdown("""
+            <div style="background-color: #ffd1dc; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; font-size: 20px; margin: 0 auto;">
+            2
+            </div>
+            """, unsafe_allow_html=True)
+            
+        with col2:
+            st.subheader("다름을 이해하기")
+            st.info("서로 다른 생각을 더 깊이 이해하는 단계예요.")
+            
+            st.markdown("- 내 의견을 논리적으로 설명하기")
+            st.markdown("- 친구들의 의견이 왜 그런지 이해하기")
+            st.markdown("- 질문하고 답변하며 생각 나누기")
+            
+            st.caption("**예시:** \"스마트폰으로 수업 정보를 찾을 수 있어요\"라는 의견과 \"스마트폰이 수업에 집중하는 것을 방해해요\"라는 의견이 왜 나오는지 서로 이야기해봅니다.")
+    
+    # 구분선 추가
+    st.divider()
+    
+    # 스테이지 3 - 다름과 공존하기
+    with st.container():
+        col1, col2 = st.columns([1, 5])
+        
+        with col1:
+            st.markdown("""
+            <div style="background-color: #ffe0e6; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #66545e; font-weight: bold; font-size: 20px; margin: 0 auto;">
+            3
+            </div>
+            """, unsafe_allow_html=True)
+            
+        with col2:
+            st.subheader("다름과 공존하기")
+            st.info("서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.")
+            
+            st.markdown("- 서로의 의견을 존중하기")
+            st.markdown("- 좋은 점들을 모아 새로운 해결책 생각하기")
+            st.markdown("- 함께 성장하기")
+            
+            st.caption("**예시:** \"스마트폰은 수업 시간에는 꺼두고, 조사 활동이 필요할 때만 선생님 허락을 받고 사용하자\"와 같이 모두가 만족할 수 있는 방법을 찾습니다.")
+    
+    # 구분선 추가
+    st.divider()
 
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%); border-radius: 12px; padding: 1.5rem; border-left: 5px solid #a5d8ff;">
-        <h3 style="margin-top:0; color: #66545e;">👉 이 도구는 위 세 단계 모두 도움을 줄 수 있어요!</h3>
-        <ul>
-            <li>토론 주제 추천은 <span class="rainbow-text">'다름과 마주하기'</span>를 도와줘요</li>
-            <li>찬반 논거 아이디어는 <span class="rainbow-text">'다름을 이해하기'</span>를 도와줘요</li> 
-            <li>피드백 받기와 마무리 활동은 <span class="rainbow-text">'다름과 공존하기'</span>를 연습하는데 도움이 돼요</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
+    # 도구 안내 섹션
+    st.write("##")  # 간격 추가
+    st.success("""
+    ### 👉 이 도구는 위 세 단계 모두 도움을 줄 수 있어요!
+    
+    * **토론 주제 추천**은 '다름과 마주하기'를 도와줘요
+    * **찬반 논거 아이디어**는 '다름을 이해하기'를 도와줘요
+    * **피드백 받기와 마무리 활동**은 '다름과 공존하기'를 연습하는데 도움이 돼요
+    """)
+    
     st.markdown('</div>', unsafe_allow_html=True)
-    # ============================
+
+# ============================
 # 2. 토론 주제 추천 기능
 # ============================
 with tab2:
@@ -1263,23 +1302,37 @@ with tab5:
 
     # 토론 마무리 활동 TIP 제공
     with st.expander("토론부기의 마무리 활동 TIP"):
-        st.markdown("""
-        <div class="result-display">
-        <h3 style="margin-top:0; color: #66545e;">🦉 토론부기의 마무리 활동 꿀팁</h3>
-
-        <ol>
-            <li><strong>비판이 아닌 가치 찾기</strong>: 상대 의견의 단점보다 가치 있는 점을 먼저 찾아봐요.</li>
-            
-            <li><strong>모두의 참여</strong>: 해결책을 만들 때 모든 친구의 의견을 조금씩 반영해봐요.</li>
-            
-            <li><strong>감정 표현하기</strong>: "나는 ~라고 생각해" 형식으로 자기 감정을 솔직하게 표현해요.</li>
-            
-            <li><strong>열린 마음</strong>: 처음과 다른 생각을 하게 되었다면, 그것도 아주 훌륭한 성장이에요!</li>
-            
-            <li><strong>기록하기</strong>: 토론 전후의 내 생각 변화를 기록해두면 나중에 보았을 때 내가 얼마나 성장했는지 알 수 있어요.</li>
-        </ol>
-        </div>
-        """, unsafe_allow_html=True)
+        st.subheader("🦉 토론부기의 마무리 활동 꿀팁")
+        
+        tip1, tip1_text = st.columns([1, 20])
+        with tip1:
+            st.markdown("1️⃣")
+        with tip1_text:
+            st.markdown("**비판이 아닌 가치 찾기**: 상대 의견의 단점보다 가치 있는 점을 먼저 찾아봐요.")
+        
+        tip2, tip2_text = st.columns([1, 20])
+        with tip2:
+            st.markdown("2️⃣")
+        with tip2_text:
+            st.markdown("**모두의 참여**: 해결책을 만들 때 모든 친구의 의견을 조금씩 반영해봐요.")
+        
+        tip3, tip3_text = st.columns([1, 20])
+        with tip3:
+            st.markdown("3️⃣")
+        with tip3_text:
+            st.markdown("**감정 표현하기**: \"나는 ~라고 생각해\" 형식으로 자기 감정을 솔직하게 표현해요.")
+        
+        tip4, tip4_text = st.columns([1, 20])
+        with tip4:
+            st.markdown("4️⃣")
+        with tip4_text:
+            st.markdown("**열린 마음**: 처음과 다른 생각을 하게 되었다면, 그것도 아주 훌륭한 성장이에요!")
+        
+        tip5, tip5_text = st.columns([1, 20])
+        with tip5:
+            st.markdown("5️⃣")
+        with tip5_text:
+            st.markdown("**기록하기**: 토론 전후의 내 생각 변화를 기록해두면 나중에 보았을 때 내가 얼마나 성장했는지 알 수 있어요.")
     
     st.markdown('</div>', unsafe_allow_html=True)
 
