@@ -664,6 +664,37 @@ with st.container():
         border-radius: 10px;
         margin-bottom: 1rem;
     }
+    
+    /* 푸터 스타일 */
+    .footer {
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+        border-top: 2px solid #ffe0e6;
+        background-color: #fff5f2;
+        border-radius: 0 0 10px 10px;
+    }
+    
+    .footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .footer-heart {
+        color: #ff6b81;
+        font-size: 1.2em;
+        animation: heartbeat 1.5s infinite;
+    }
+    
+    @keyframes heartbeat {
+        0% { transform: scale(1); }
+        15% { transform: scale(1.15); }
+        30% { transform: scale(1); }
+        45% { transform: scale(1.15); }
+        60% { transform: scale(1); }
+    }
     </style>
     
     <div class="main-header">
@@ -705,6 +736,8 @@ with tab1:
         
         h1, h2, h3, h4, h5, h6 {
             color: #66545e;
+            line-height: 1.4;
+            margin-bottom: 0.8rem;
         }
         
         /* 헤더 스타일 */
@@ -860,6 +893,13 @@ with tab1:
             font-size: 0.8em;
             margin-top: 50px;
         }
+        
+        /* 섹션 타이틀 이모지 스타일 */
+        .section-emoji {
+            font-size: 1.2em;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
     </style>
     """, unsafe_allow_html=True)
 
@@ -884,7 +924,7 @@ with tab1:
     # 헤더
     st.markdown("""
     <div class="header">
-        <h1>경기 토론 수업 모형</h1>
+        <h1>📚 경기 토론 수업 모형</h1>
         <p>다름과 공존하는 경기토론교육 모형</p>
     </div>
     """, unsafe_allow_html=True)
@@ -892,7 +932,7 @@ with tab1:
     # 보이텔스바흐 합의 원칙
     st.markdown("""
     <div class="card">
-        <h2>보이텔스바흐 합의 원칙</h2>
+        <h2><span class="section-emoji">📜</span> 보이텔스바흐 합의 원칙</h2>
         <p>경기 토론 수업 모형은 다음 세 가지 핵심 원칙에 기반합니다:</p>
     </div>
     """, unsafe_allow_html=True)
@@ -935,7 +975,7 @@ with tab1:
     # 핵심 특징
     st.markdown("""
     <div class="feature-box">
-        <h2>핵심 특징: 쟁점 중심 토론 교육</h2>
+        <h2><span class="section-emoji">💬</span> 핵심 특징: 쟁점 중심 토론 교육</h2>
         <p>학생들이 특정 사회적 이슈나 논쟁거리에 대해 깊이 있게 탐구하고 자신의 입장을 논리적으로 펼치는 것을 강조합니다.</p>
     </div>
     """, unsafe_allow_html=True)
@@ -943,7 +983,7 @@ with tab1:
     # 3단계 프로세스
     st.markdown("""
     <div class="card">
-        <h2>토론 수업 3단계 프로세스</h2>
+        <h2><span class="section-emoji">🔄</span> 토론 수업 3단계 프로세스</h2>
     </div>
     """, unsafe_allow_html=True)
 
@@ -952,7 +992,7 @@ with tab1:
     <div class="step-card">
         <div class="step-number">1</div>
         <div class="step-content">
-            <h3>다름과 마주하기</h3>
+            <h3>🔎 다름과 마주하기</h3>
             <ul class="custom-list">
                 <li>토론 주제를 처음 접하고, 관련 자료를 조사</li>
                 <li>핵심 쟁점을 파악하고 토론의 방향 설정</li>
@@ -973,7 +1013,7 @@ with tab1:
     <div class="step-card">
         <div class="step-number">2</div>
         <div class="step-content">
-            <h3>다름을 이해하기</h3>
+            <h3>🤔 다름을 이해하기</h3>
             <ul class="custom-list">
                 <li>질문과 반박을 통해 다양한 관점을 이해</li>
                 <li>자신의 주장을 논리적으로 펼치기</li>
@@ -994,7 +1034,7 @@ with tab1:
     <div class="step-card">
         <div class="step-number">3</div>
         <div class="step-content">
-            <h3>다름과 공존하기</h3>
+            <h3>🤝 다름과 공존하기</h3>
             <ul class="custom-list">
                 <li>공동의 이익을 위한 실질적인 해결책 모색</li>
                 <li>다양한 관점을 종합하고 서로의 의견을 존중</li>
@@ -1013,7 +1053,7 @@ with tab1:
     # 교육 목표
     st.markdown("""
     <div class="card">
-        <h2 style="text-align: center; margin-bottom: 20px;">교육 목표</h2>
+        <h2 style="text-align: center; margin-bottom: 20px;"><span class="section-emoji">🎯</span> 교육 목표</h2>
     </div>
     """, unsafe_allow_html=True)
 
@@ -1084,17 +1124,17 @@ with tab1:
         st.markdown("""
         ### 📚 초등학교 토론 주제 예시
         
-        #### 학교생활 관련
+        #### 📝 학교생활 관련
         - 학교에서 스마트폰 사용은 허용되어야 할까요?
         - 교복(교칙)은 필요할까요?
         - 방학 숙제는 없애야 할까요?
         
-        #### 환경 및 사회 이슈
+        #### 🌍 환경 및 사회 이슈
         - 일회용 플라스틱은 금지해야 할까요?
         - 로봇이 인간의 일자리를 대체하는 것은 좋은 일일까요?
         - 반려동물 키우기는 제한되어야 할까요?
         
-        #### 가치 및 윤리 관련
+        #### 💭 가치 및 윤리 관련
         - SNS는 아이들에게 도움이 될까요, 해로울까요?
         - 게임은 취미 활동으로 적절한가요?
         - 어린이들도 자신의 모습을 꾸밀 권리가 있을까요?
@@ -1245,7 +1285,7 @@ with tab3:
 
     # 토론 주제 입력 필드 (고유 키 부여) - 버튼 클릭 시 업데이트됨
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
-    st.markdown('<label style="font-weight: bold; margin-bottom: 0.5rem; display: block;">어떤 주제에 대한 논거 아이디어가 필요하니?</label>', unsafe_allow_html=True)
+    st.markdown('<label style="font-weight: bold; margin-bottom: 0.5rem; display: block;">📋 어떤 주제에 대한 논거 아이디어가 필요하니?</label>', unsafe_allow_html=True)
     
     # 버튼 클릭으로 선택된 주제가 있으면 해당 주제를 기본값으로 사용
     argument_topic_value = st.session_state.selected_topic_for_tab3 if st.session_state.selected_topic_for_tab3 else ""
@@ -1340,7 +1380,7 @@ with tab4:
 
     # 토론 주제 입력 필드 (고유 키 부여) - 이전 주제 자동 완성
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
-    st.markdown('<label style="font-weight: bold; margin-bottom: 0.5rem; display: block;">어떤 주제에 대한 의견인가요?</label>', unsafe_allow_html=True)
+    st.markdown('<label style="font-weight: bold; margin-bottom: 0.5rem; display: block;">📌 어떤 주제에 대한 의견인가요?</label>', unsafe_allow_html=True)
     feedback_topic = st.text_input("", 
                              value=previous_topic, # 이전 단계 주제를 기본값으로 설정
                              key="feedback_topic_input",
@@ -1349,7 +1389,7 @@ with tab4:
 
     # 논거/의견 입력 필드 (고유 키 부여, 텍스트 영역으로 충분한 입력 공간 제공)
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
-    st.markdown('<label style="font-weight: bold; margin-bottom: 0.5rem; display: block;">내 의견을 자유롭게 적어보세요:</label>', unsafe_allow_html=True)
+    st.markdown('<label style="font-weight: bold; margin-bottom: 0.5rem; display: block;">📄 내 의견을 자유롭게 적어보세요:</label>', unsafe_allow_html=True)
     feedback_argument = st.text_area("", key="feedback_argument_input", 
                                 height=150,
                                 placeholder="이 주제에 대한 나의 생각을 솔직하게 적어보세요. 찬성하는지, 반대하는지, 왜 그렇게 생각하는지 적으면 더 좋아요!")
@@ -1386,12 +1426,12 @@ with tab4:
 
     # 예시 의견 보여주기
     with st.expander("의견 작성이 어렵다면? 예시를 참고해 보세요!", expanded=False):
-        st.subheader("예시 1: 학교 스마트폰 사용에 대한 의견")
+        st.subheader("📱 예시 1: 학교 스마트폰 사용에 대한 의견")
         st.info("""
         저는 학교에서 스마트폰 사용을 제한적으로 허용하는 것이 좋다고 생각해요. 왜냐하면 긴급 상황에 부모님께 연락할 수 있고, 수업 중에 궁금한 것을 바로 찾아볼 수 있기 때문이에요. 하지만 완전히 자유롭게 사용하면 게임이나 SNS에 집중해서 수업에 방해가 될 수 있어요. 그래서 꼭 필요할 때만 선생님 허락을 받고 사용하는 방법이 좋다고 생각해요.
         """)
         
-        st.subheader("예시 2: 로봇 반려동물에 대한 의견")
+        st.subheader("🤖 예시 2: 로봇 반려동물에 대한 의견")
         st.info("""
         저는 로봇 반려동물보다 진짜 반려동물이 더 좋다고 생각해요. 진짜 반려동물은 정말 나를 좋아하고 감정을 표현할 수 있어요. 로봇은 프로그램대로만 움직이니까 진짜 정이 들기 어려울 것 같아요. 하지만 알레르기가 있거나 돌볼 시간이 부족한 사람들에게는 로봇 반려동물이 좋은 선택일 수 있다고 생각해요.
         """)
@@ -1415,7 +1455,7 @@ with tab5:
     <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
         <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">1</div>
         <div style="flex: 1;">
-            <h3 style="margin-top: 0; color: #333333;">요약하기</h3>
+            <h3 style="margin-top: 0; color: #333333;">📝 요약하기</h3>
             <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
                 <p style="margin: 0; color: #333333;">토론에서 나온 중요한 생각들을 정리해 봐요.</p>
             </div>
@@ -1435,7 +1475,7 @@ with tab5:
     <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
         <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">2</div>
         <div style="flex: 1;">
-            <h3 style="margin-top: 0; color: #333333;">공감하기</h3>
+            <h3 style="margin-top: 0; color: #333333;">💭 공감하기</h3>
             <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
                 <p style="margin: 0; color: #333333;">내 생각과 다른 의견에서도 배울 점을 찾아봐요.</p>
             </div>
@@ -1455,7 +1495,7 @@ with tab5:
     <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
         <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">3</div>
         <div style="flex: 1;">
-            <h3 style="margin-top: 0; color: #333333;">질문하기</h3>
+            <h3 style="margin-top: 0; color: #333333;">❓ 질문하기</h3>
             <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
                 <p style="margin: 0; color: #333333;">"왜 그렇게 생각해요?", "예시를 들어줄래요?"</p>
             </div>
@@ -1475,7 +1515,7 @@ with tab5:
     <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
         <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">4</div>
         <div style="flex: 1;">
-            <h3 style="margin-top: 0; color: #333333;">존중하기</h3>
+            <h3 style="margin-top: 0; color: #333333;">🤗 존중하기</h3>
             <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
                 <p style="margin: 0; color: #333333;">다른 의견도 소중해요!</p>
             </div>
@@ -1495,7 +1535,7 @@ with tab5:
     <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; background-color: #f8f8f8; padding: 1rem; border-radius: 10px;">
         <div style="background-color: #ffcdd2; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; margin-right: 15px;">5</div>
         <div style="flex: 1;">
-            <h3 style="margin-top: 0; color: #333333;">마음 열기</h3>
+            <h3 style="margin-top: 0; color: #333333;">🌱 마음 열기</h3>
             <div style="background-color: #e6f2ff; padding: 0.5rem; border-radius: 5px; margin-bottom: 0.5rem;">
                 <p style="margin: 0; color: #333333;">내 생각이 바뀔 수도 있어요.</p>
             </div>
@@ -1518,11 +1558,11 @@ with tab5:
     st.markdown("토론에서 나온 생각들을 정리하고 새로운 해결책을 찾아보세요.")
     
     # 토론 주제 입력
-    st.markdown("#### 토론했던 주제는 무엇인가요?")
+    st.markdown("#### 📌 토론했던 주제는 무엇인가요?")
     topic = st.text_input("", key="topic_input", placeholder="예: 학교에서 스마트폰 사용 허용 여부")
     
     # 찬성/반대 의견 입력
-    st.markdown("#### 토론에서 나온 주요 의견들")
+    st.markdown("#### 📋 토론에서 나온 주요 의견들")
     col1, col2 = st.columns(2)
     
     with col1:
@@ -1587,7 +1627,7 @@ with tab5:
             # 마무리 결과 출력
             st.markdown("## 📋 토론 마무리 정리")
             
-            st.markdown("### 토론 주제")
+            st.markdown("### 📌 토론 주제")
             st.info(topic)
             
             col1, col2 = st.columns(2)
@@ -1647,16 +1687,23 @@ with tab5:
     # 선생님을 위한 도움말
     with st.expander("선생님을 위한 도움말"):
         st.markdown("""
-        ### API 키 설정 방법
+        ### 🔑 API 키 설정 방법
         1. [Google AI Studio](https://aistudio.google.com/)에서 API 키를 발급받으세요.
         2. 발급받은 키를 입력 상자에 넣고 저장하면 됩니다.
         
-        ### 수업 활용 Tip
+        ### 📚 수업 활용 Tip
         - 토론 주제는 학생들의 관심사와 연결해 보세요.
         - 찬반 의견을 나눠 역할극처럼 진행해 보세요.
         - 모든 학생이 최소 한 번씩 의견을 말할 수 있도록 해주세요.
         """)
 
 # 푸터 추가
-st.divider()
-st.markdown("© 2025 안양 박달초 김문정 | ❤️ [유튜브 배움의 달인](https://www.youtube.com/@%EB%B0%B0%EC%9B%80%EC%9D%98%EB%8B%AC%EC%9D%B8-p5v/videos)")
+st.markdown("""
+<div class="footer">
+    <div class="footer-content">
+        <span>© 2025 안양 박달초 김문정</span>
+        <span class="footer-heart">❤️</span>
+        <a href="https://www.youtube.com/@%EB%B0%B0%EC%9B%80%EC%9D%98%EB%8B%AC%EC%9D%B8-p5v/videos" target="_blank">유튜브 배움의 달인</a>
+    </div>
+</div>
+""", unsafe_allow_html=True)
