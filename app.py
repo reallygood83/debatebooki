@@ -612,9 +612,32 @@ def get_gemini_response(prompt, model="gemini-2.0-flash"):
 # 앱 UI 구성 부분
 # ============================
 
-# 앱 타이틀 및 설명
-st.title("토론부기 - 지혜로운 토론 친구")
-st.caption("AI활용 경기 토론 수업 모형 지원 도구")
+# 앱 타이틀 및 설명 - 핑크색 배경 추가
+with st.container():
+    # 핑크색 배경 추가
+    st.markdown("""
+    <style>
+    [data-testid="stAppViewContainer"] > div:first-child {
+        background-color: #ffcdd2;
+        padding: 1.5em;
+        border-radius: 10px;
+        margin-bottom: 1em;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # 중앙 정렬 구성
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown("<h1 style='text-align: center; font-size: 2.5em; margin-bottom: 0;'>🦉</h1>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align: center; margin-top: 0;'>토론부기 - 지혜로운 토론 친구</h2>", unsafe_allow_html=True)
+        
+        # 흰색 배경의 부제목
+        st.markdown("""
+        <div style='background-color: white; border-radius: 30px; padding: 8px 15px; width: fit-content; margin: 0 auto;'>
+            <p style='text-align: center; margin: 0; font-size: 0.9em;'>AI활용 경기 토론 수업 모형 지원 도구</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 # 기능 설명을 카드 형태로 표시 - HTML 태그 제거하고 Streamlit 컴포넌트만 사용
 col1, col2, col3, col4 = st.columns(4)
@@ -664,7 +687,7 @@ with tab1:
     col1, col2 = st.columns([1, 5])
     
     with col1:
-        st.image("https://raw.githubusercontent.com/reallygood83/debatebooki/main/images/number1.png", width=60)
+        st.markdown("## 1️⃣")
         
     with col2:
         st.subheader("📌 토론 주제 추천")
@@ -687,7 +710,7 @@ with tab1:
     col1, col2 = st.columns([1, 5])
     
     with col1:
-        st.image("https://raw.githubusercontent.com/reallygood83/debatebooki/main/images/number2.png", width=60)
+        st.markdown("## 2️⃣")
         
     with col2:
         st.subheader("📌 찬반 논거 아이디어")
@@ -710,7 +733,7 @@ with tab1:
     col1, col2 = st.columns([1, 5])
     
     with col1:
-        st.image("https://raw.githubusercontent.com/reallygood83/debatebooki/main/images/number3.png", width=60)
+        st.markdown("## 3️⃣")
         
     with col2:
         st.subheader("📌 의견 피드백 & 마무리")
@@ -1022,8 +1045,7 @@ with tab4:
 # 5. 토론 마무리 활동 도구
 # ============================
 with tab5:
-    st.markdown('<div class="card-container">', unsafe_allow_html=True)
-    st.header("🤝 마무리 토론 활동 TIP")
+    st.header("🤝 토론 마무리하기")
     
     # 토론 마무리 활동 소개 (중앙 정렬)
     st.markdown("<h3 style='text-align:center'>😀 토론 마무리 활동 TIP! 이렇게 해보세요!</h3>", unsafe_allow_html=True)
@@ -1036,7 +1058,7 @@ with tab5:
     col1, col2 = st.columns([1, 5])
     
     with col1:
-        st.image("https://raw.githubusercontent.com/reallygood83/debatebooki/main/images/number1.png", width=60)
+        st.markdown("## 1️⃣")
         
     with col2:
         st.subheader("요약하기")
@@ -1053,7 +1075,7 @@ with tab5:
     col1, col2 = st.columns([1, 5])
     
     with col1:
-        st.image("https://raw.githubusercontent.com/reallygood83/debatebooki/main/images/number2.png", width=60)
+        st.markdown("## 2️⃣")
         
     with col2:
         st.subheader("공감하기")
@@ -1070,7 +1092,7 @@ with tab5:
     col1, col2 = st.columns([1, 5])
     
     with col1:
-        st.image("https://raw.githubusercontent.com/reallygood83/debatebooki/main/images/number3.png", width=60)
+        st.markdown("## 3️⃣")
         
     with col2:
         st.subheader("질문하기")
@@ -1087,7 +1109,7 @@ with tab5:
     col1, col2 = st.columns([1, 5])
     
     with col1:
-        st.image("https://raw.githubusercontent.com/reallygood83/debatebooki/main/images/number4.png", width=60)
+        st.markdown("## 4️⃣")
         
     with col2:
         st.subheader("존중하기")
@@ -1104,7 +1126,7 @@ with tab5:
     col1, col2 = st.columns([1, 5])
     
     with col1:
-        st.image("https://raw.githubusercontent.com/reallygood83/debatebooki/main/images/number5.png", width=60)
+        st.markdown("## 5️⃣")
         
     with col2:
         st.subheader("마음 열기")
@@ -1118,11 +1140,138 @@ with tab5:
     st.divider()
     
     # 마무리 메시지
-    st.success("""
-    <div style="text-align: center; padding: 10px;">
-        <p style="margin: 0; font-style: italic;">토론은 정답을 찾는 게 아니라, 여러 생각을 나누는 거예요! 🦉✨</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.success("토론은 정답을 찾는 게 아니라, 여러 생각을 나누는 거예요! 🦉✨")
+    
+    # 실제 토론 마무리 활동 입력 폼
+    st.subheader("💬 토론 마무리 활동")
+    st.markdown("토론에서 나온 생각들을 정리하고 새로운 해결책을 찾아보세요.")
+    
+    # 토론 주제 입력
+    st.markdown("#### 토론했던 주제는 무엇인가요?")
+    topic = st.text_input("", key="topic_input", placeholder="예: 학교에서 스마트폰 사용 허용 여부")
+    
+    # 찬성/반대 의견 입력
+    st.markdown("#### 토론에서 나온 주요 의견들")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("##### 💙 찬성 측 의견")
+        pro_opinion = st.text_area(
+            "찬성 측의 주요 의견은 무엇이었나요?",
+            key="pro_opinion",
+            placeholder="스마트폰으로 수업 정보를 빠르게 찾을 수 있고, 다양한 학습 앱을 활용할 수 있어요.",
+            height=120
+        )
+        
+        pro_good_points = st.text_area(
+            "찬성 의견에서 가치 있다고 생각하는 점은?",
+            key="pro_good_points",
+            placeholder="디지털 도구를 활용한 학습 능력 향상, 정보 접근성 증가",
+            height=80
+        )
+    
+    with col2:
+        st.markdown("##### 💜 반대 측 의견")
+        con_opinion = st.text_area(
+            "반대 측의 주요 의견은 무엇이었나요?",
+            key="con_opinion",
+            placeholder="스마트폰이 수업 집중을 방해하고, 게임이나 SNS 중독 위험이 있어요.",
+            height=120
+        )
+        
+        con_good_points = st.text_area(
+            "반대 의견에서 가치 있다고 생각하는 점은?",
+            key="con_good_points",
+            placeholder="집중력 유지의 중요성, 디지털 기기 과의존 방지",
+            height=80
+        )
+
+    # 공통된 해결책 찾기
+    st.markdown("#### 🌈 함께 만드는 새로운 해결책")
+    new_solution = st.text_area(
+        "두 관점의 좋은 점을 모아 새로운 해결책을 만들어 보세요.",
+        key="new_solution",
+        placeholder="예: 스마트폰은 기본적으로 보관함에 두고, 선생님이 학습 목적으로 필요하다고 판단할 때만 사용하도록 해요. 또한 디지털 시민교육을 통해 올바른 스마트폰 사용법을 배워요.",
+        height=120
+    )
+
+    # 성찰하기
+    st.markdown("#### 🌱 나의 성장 일기")
+    reflection = st.text_area(
+        "토론을 통해 내 생각이 어떻게 변했나요? 무엇을 새롭게 배웠나요?",
+        key="reflection",
+        placeholder="처음에는 스마트폰 사용을 무조건 찬성했지만, 집중력 문제도 중요하다는 것을 알게 되었어요. 서로 다른 의견을 듣는 것이 중요하다는 것을 배웠어요.",
+        height=120
+    )
+
+    # 의견 저장 및 공유 기능
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        submitted = st.button("🔖 마무리 활동 정리하기", key="summary_button", use_container_width=True)
+
+    if submitted:
+        if topic:
+            st.success("토론 마무리 활동 내용이 정리되었어요! 아래 정리된 내용을 확인해보세요.")
+
+            # 마무리 결과 출력
+            st.markdown("## 📋 토론 마무리 정리")
+            
+            st.markdown("### 토론 주제")
+            st.info(topic)
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("### 💙 찬성 측 의견과 가치")
+                st.info(pro_opinion)
+                
+                st.markdown("**가치 있는 점:**")
+                st.info(pro_good_points)
+            
+            with col2:
+                st.markdown("### 💜 반대 측 의견과 가치")
+                st.info(con_opinion)
+                
+                st.markdown("**가치 있는 점:**")
+                st.info(con_good_points)
+            
+            st.markdown("### 🌟 우리가 함께 만든 새로운 해결책")
+            st.info(new_solution)
+            
+            st.markdown("### 🌱 나의 성장과 배움")
+            st.info(reflection)
+            
+            # 결과 다운로드 버튼
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.download_button(
+                    label="📥 정리 내용 다운로드",
+                    data=f"""토론 주제: {topic}
+                    
+찬성 측 의견:
+{pro_opinion}
+
+찬성 측 가치 있는 점:
+{pro_good_points}
+
+반대 측 의견:
+{con_opinion}
+
+반대 측 가치 있는 점:
+{con_good_points}
+
+함께 만든 해결책:
+{new_solution}
+
+나의 성장과 배움:
+{reflection}
+                    """,
+                    file_name="토론마무리_결과.txt",
+                    mime="text/plain",
+                )
+            
+        else:
+            st.warning("토론 주제를 입력해주세요!")
     
     # 선생님을 위한 도움말
     with st.expander("선생님을 위한 도움말"):
@@ -1139,4 +1288,4 @@ with tab5:
 
 # 푸터 추가
 st.divider()
-st.caption("© 2025 안양 박달초 김문정 | ❤️ [유튜브 배움의 달인](https://www.youtube.com/@%EB%B0%B0%EC%9B%80%EC%9D%98%EB%8B%AC%EC%9D%B8-p5v/videos)")
+st.markdown("© 2025 안양 박달초 김문정 | ❤️ [유튜브 배움의 달인](https://www.youtube.com/@%EB%B0%B0%EC%9B%80%EC%9D%98%EB%8B%AC%EC%9D%B8-p5v/videos)")
