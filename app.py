@@ -674,29 +674,6 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-# 기능 설명을 카드 형태로 표시
-st.markdown("""
-<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-    <div style="flex: 1; min-width: 200px; background-color: #f8f8f8; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffcdd2;">
-        <div class="number-circle" style="background-color: #ffcdd2;">1</div>
-        <h3 style="text-align: center; margin-top: 0.5rem; color: #333333;">📌 토론 주제 추천</h3>
-        <p style="color: #555555; text-align: center;">다양한 생각이 있다는 것을 알아보는 단계예요.</p>
-    </div>
-    
-    <div style="flex: 1; min-width: 200px; background-color: #f8f8f8; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffcdd2;">
-        <div class="number-circle" style="background-color: #ffcdd2;">2</div>
-        <h3 style="text-align: center; margin-top: 0.5rem; color: #333333;">📌 찬반 논거 아이디어</h3>
-        <p style="color: #555555; text-align: center;">서로 다른 생각을 더 깊이 이해하는 단계예요.</p>
-    </div>
-    
-    <div style="flex: 1; min-width: 200px; background-color: #f8f8f8; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffcdd2;">
-        <div class="number-circle" style="background-color: #ffcdd2;">3</div>
-        <h3 style="text-align: center; margin-top: 0.5rem; color: #333333;">📌 의견 피드백 & 마무리</h3>
-        <p style="color: #555555; text-align: center;">서로 다른 의견이 모두 소중하다는 것을 알고 함께 좋은 방법을 찾는 단계예요.</p>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
 # 안내 메시지 
 st.info("아래 탭을 선택하여 각 기능을 사용해보세요! ✨")
 
