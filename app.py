@@ -305,17 +305,36 @@ st.markdown("""
         animation: rainbow 8s linear infinite;
     }
     
-    /* 주제 추천 결과 컨테이너 스타일 수정 */
+    /* 주제 추천 결과 컨테이너 스타일 */
     .recommendation-result {
         background-color: white;
         border-radius: 12px;
-        padding: 1rem;
-        max-height: 300px;
-        overflow-y: auto;
+        padding: 1.5rem;
         margin-top: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         border: 2px solid #ffb7c5;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* 결과 표시 영역 - 새로운 스타일 */
+    .result-display {
+        background-color: white;
+        border-radius: 12px;
+        padding: 1.5rem; 
+        margin-bottom: 1.5rem;
+        border: 2px solid #ffb7c5; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    /* 결과 헤더 스타일 */
+    .result-header {
+        color: #66545e; 
+        border-bottom: 2px dashed #ffb7c5; 
+        padding-bottom: 0.5rem;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
     
     /* 사이드바 스타일 */
@@ -384,7 +403,7 @@ st.markdown("""
 # ============================
 with st.sidebar:
     st.markdown('<div class="big-emoji">🦉</div>', unsafe_allow_html=True)
-    st.markdown('<h2 style="text-align: center; margin-top: 0;">토론부기-지혜로운 토론 친구</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center; margin-top: 0;">🦉 토론부기: 지혜로운 친구</h2>', unsafe_allow_html=True)
     
     # 앱 사용법
     st.markdown("## 앱 사용법")
@@ -632,6 +651,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # 기능 설명을 카드 형태로 표시
 st.markdown("""
+<!-- Feature description cards -->
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
     <div style="flex: 1; min-width: 200px; background-color: white; padding: 1rem; border-radius: 12px; border-left: 5px solid #ffb7c5; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
         <h3 style="margin-top:0; color: #66545e;">📚 경기 토론 수업 모형</h3>
@@ -766,42 +786,59 @@ with tab2:
     # 사용자 관심사 입력 필드 (고유 키 부여)
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
     st.markdown('<label style="font-weight: bold; margin-bottom: 0.5rem; display: block;">어떤 것에 관심이 있니? (예: 게임, 환경, 학교, 미래 기술 등)</label>', unsafe_allow_html=True)
-    col1, col2 = st.columns([3, 1])
-    with col1:
-        topic_interest = st.text_input("", 
-                                   key="topic_interest_input", 
-                                   placeholder="관심 있는 주제를 입력해 보세요!")
+    
+    # 입력 필드를 한 줄로 배치
+    topic_interest = st.text_input("", 
+                               key="topic_interest_input", 
+                               placeholder="관심 있는 주제를 입력해 보세요!")
+    
+    # 버튼을 중앙에 배치
+    col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        # 버튼 클릭 시 처리 (고유 키 부여)
-        if st.button("주제 추천 받기 🚀", key="topic_recommend_button"):
-            if not topic_interest:
-                # 입력값이 없을 경우 친근한 메시지
-                st.warning("관심 있는 것을 알려주면 재미있는 토론 주제를 찾아줄게요! 😊")
-            else:
-                # 로딩 상태 표시하며 API 호출
-                with st.spinner("토론 주제를 찾고 있어요... 조금만 기다려 주세요! 🔍"):
-                    # 입력값을 프롬프트에 포맷팅
-                    prompt = RECOMMEND_TOPIC_PROMPT_TEMPLATE.format(interest_input=topic_interest)
-                    # API 호출하여 응답 받기
-                    response = get_gemini_response(prompt)
+        button_clicked = st.button("주제 추천 받기 🚀", key="topic_recommend_button", use_container_width=True)
+    
+    # 결과 컨테이너 미리 생성
+    result_container = st.container()
+    
+    # 버튼 클릭 시 처리
+    if button_clicked:
+        if not topic_interest:
+            # 입력값이 없을 경우 친근한 메시지
+            st.warning("관심 있는 것을 알려주면 재미있는 토론 주제를 찾아줄게요! 😊")
+        else:
+            # 로딩 상태 표시하며 API 호출
+            with st.spinner("토론 주제를 찾고 있어요... 조금만 기다려 주세요! 🔍"):
+                # 입력값을 프롬프트에 포맷팅
+                prompt = RECOMMEND_TOPIC_PROMPT_TEMPLATE.format(interest_input=topic_interest)
+                # API 호출하여 응답 받기
+                response = get_gemini_response(prompt)
+                
+                if response:
+                    # 응답 결과를 세션 상태에 저장 (다른 기능에서도 참조 가능)
+                    st.session_state.topic_recommendations = response
                     
-                    if response:
-                        # 응답 결과를 세션 상태에 저장 (다른 기능에서도 참조 가능)
-                        st.session_state.topic_recommendations = response
-                        # 결과를 고정 크기 컨테이너에 표시
+                    # 결과를 컨테이너에 표시 (더 넓은 크기로)
+                    with result_container:
                         st.markdown(f"""
-                        <div style="margin-top:15px;">
-                            <h3 style="color: #66545e; border-bottom: 2px dashed #ffb7c5; padding-bottom: 0.5rem;">'{topic_interest}'에 관한 토론 주제 추천 📋</h3>
+                        <div class="result-header">
+                            <h3>'{topic_interest}'에 관한 토론 주제 추천 📋</h3>
                         </div>
-                        <div class="recommendation-result">
+                        """, unsafe_allow_html=True)
+                        
+                        # 넓고, 높이 제한 없는 결과 컨테이너
+                        st.markdown(f"""
+                        <div class="result-display">
                             {response}
                         </div>
                         """, unsafe_allow_html=True)
+                        
                         st.success("이 주제들 중에 마음에 드는 것이 있다면, '찬반 논거 아이디어 보기' 탭을 선택해 보세요! 👇")
-                    else:
+                else:
+                    with result_container:
                         st.error("앗! 주제를 찾는데 문제가 생겼어요. 다른 관심사를 입력해 볼까요?")
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True) # input-container 닫기
+    st.markdown('</div>', unsafe_allow_html=True) # card-container 닫기
 
 # ============================
 # 3. 찬반 논거 아이디어 보기 기능
@@ -848,66 +885,84 @@ with tab3:
         if recommended_topics:
             with st.expander("추천받은 주제를 사용하시겠어요?", expanded=True):
                 st.info("위에서 추천받은 주제 중 하나를 선택하여 바로 논거 아이디어를 찾아보세요! 👇")
+                # 주제 버튼들을 가로로 나열 (여러 개일 경우 여러 줄로)
+                cols = st.columns(min(len(recommended_topics), 3))  # 한 줄에 최대 3개
                 for i, topic_title in enumerate(recommended_topics):
-                    # 각 주제에 대한 버튼 생성
-                    button_key = f"use_topic_{i}"
-                    if st.button(f"➡️ '{topic_title}' 사용하기", key=button_key):
-                        # 버튼 클릭 시 해당 주제를 세션 상태에 저장하고 입력 필드 업데이트 준비
-                        st.session_state.selected_topic_for_tab3 = topic_title
-                        # Streamlit이 재실행되면서 아래 text_input의 value가 업데이트됨
-                        st.rerun() # 입력 필드 값을 즉시 업데이트하기 위해 rerun
+                    with cols[i % 3]:  # 3개씩 나눠서 배치
+                        # 각 주제에 대한 버튼 생성
+                        button_key = f"use_topic_{i}"
+                        if st.button(f"➡️ '{topic_title}' 사용하기", key=button_key, use_container_width=True):
+                            # 버튼 클릭 시 해당 주제를 세션 상태에 저장하고 입력 필드 업데이트 준비
+                            st.session_state.selected_topic_for_tab3 = topic_title
+                            # Streamlit이 재실행되면서 아래 text_input의 value가 업데이트됨
+                            st.rerun() # 입력 필드 값을 즉시 업데이트하기 위해 rerun
 
     # 토론 주제 입력 필드 (고유 키 부여) - 버튼 클릭 시 업데이트됨
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
     st.markdown('<label style="font-weight: bold; margin-bottom: 0.5rem; display: block;">어떤 주제에 대한 논거 아이디어가 필요하니?</label>', unsafe_allow_html=True)
-    col1, col2 = st.columns([3, 1])
-    with col1:
-        # 버튼 클릭으로 선택된 주제가 있으면 해당 주제를 기본값으로 사용
-        argument_topic_value = st.session_state.selected_topic_for_tab3 if st.session_state.selected_topic_for_tab3 else ""
-        argument_topic = st.text_input("",
-                                value=argument_topic_value, # 선택된 주제를 값으로 설정
-                                key="argument_topic_input",
-                                placeholder="토론하고 싶은 주제를 입력하거나 위에서 선택하세요!")
+    
+    # 버튼 클릭으로 선택된 주제가 있으면 해당 주제를 기본값으로 사용
+    argument_topic_value = st.session_state.selected_topic_for_tab3 if st.session_state.selected_topic_for_tab3 else ""
+    argument_topic = st.text_input("",
+                            value=argument_topic_value, # 선택된 주제를 값으로 설정
+                            key="argument_topic_input",
+                            placeholder="토론하고 싶은 주제를 입력하거나 위에서 선택하세요!")
+    
+    # 버튼을 중앙에 배치
+    col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        # 버튼 클릭 시 처리 (고유 키 부여)
-        if st.button("논거 아이디어 보기 💭", key="argument_idea_button"):
-            # 버튼 클릭 시 선택된 주제 상태 초기화 (다음에 직접 입력 가능하도록)
-            st.session_state.selected_topic_for_tab3 = None 
-            
-            # 입력 필드에서 최종 주제 가져오기
-            current_argument_topic = st.session_state.argument_topic_input # text_input의 현재 값 사용
-            
-            if not current_argument_topic:
-                # 입력값이 없을 경우 경고 메시지
-                st.warning("토론하고 싶은 주제를 알려주면 찬성/반대 의견을 제시해 줄게요! 🙂")
-            else:
-                # 로딩 상태 표시하며 API 호출
-                with st.spinner("찬성과 반대 의견을 생각하고 있어요... 잠시만요! 🧠"):
-                    # 입력값을 프롬프트에 포맷팅
-                    prompt = ARGUMENT_IDEAS_PROMPT_TEMPLATE.format(topic_input=current_argument_topic)
-                    # API 호출하여 응답 받기
-                    response = get_gemini_response(prompt)
+        button_clicked = st.button("논거 아이디어 보기 💭", key="argument_idea_button", use_container_width=True)
+    
+    # 결과 컨테이너 미리 생성
+    result_container = st.container()
+    
+    # 버튼 클릭 시 처리
+    if button_clicked:
+        # 버튼 클릭 시 선택된 주제 상태 초기화 (다음에 직접 입력 가능하도록)
+        st.session_state.selected_topic_for_tab3 = None 
+        
+        # 입력 필드에서 최종 주제 가져오기
+        current_argument_topic = st.session_state.argument_topic_input # text_input의 현재 값 사용
+        
+        if not current_argument_topic:
+            # 입력값이 없을 경우 경고 메시지
+            st.warning("토론하고 싶은 주제를 알려주면 찬성/반대 의견을 제시해 줄게요! 🙂")
+        else:
+            # 로딩 상태 표시하며 API 호출
+            with st.spinner("찬성과 반대 의견을 생각하고 있어요... 잠시만요! 🧠"):
+                # 입력값을 프롬프트에 포맷팅
+                prompt = ARGUMENT_IDEAS_PROMPT_TEMPLATE.format(topic_input=current_argument_topic)
+                # API 호출하여 응답 받기
+                response = get_gemini_response(prompt)
+                
+                if response:
+                    # 응답 결과를 세션 상태에 저장
+                    st.session_state.argument_response = response
+                    # 사용된 주제를 세션 상태에 저장 (Tab 4에서 사용)
+                    st.session_state.argument_topic = current_argument_topic 
                     
-                    if response:
-                        # 응답 결과를 세션 상태에 저장
-                        st.session_state.argument_response = response
-                        # 사용된 주제를 세션 상태에 저장 (Tab 4에서 사용)
-                        st.session_state.argument_topic = current_argument_topic 
-                        
-                        # 결과를 고정 크기 컨테이너에 표시
+                    # 결과를 컨테이너에 표시 (더 넓은 크기로)
+                    with result_container:
                         st.markdown(f"""
-                        <div style="margin-top:15px;">
-                            <h3 style="color: #66545e; border-bottom: 2px dashed #ffb7c5; padding-bottom: 0.5rem;">'{current_argument_topic}'에 대한 찬반 논거 아이디어 ⚖️</h3>
+                        <div class="result-header">
+                            <h3>'{current_argument_topic}'에 대한 찬반 논거 아이디어 ⚖️</h3>
                         </div>
-                        <div class="recommendation-result">
+                        """, unsafe_allow_html=True)
+                        
+                        # 넓고, 높이 제한 없는 결과 컨테이너
+                        st.markdown(f"""
+                        <div class="result-display">
                             {response}
                         </div>
                         """, unsafe_allow_html=True)
+                        
                         st.success("이제 이 아이디어들을 바탕으로 나만의 의견을 만들어 보세요! '의견 피드백 받기' 탭으로 이동해 의견을 확인받을 수 있어요 👇")
-                    else:
+                else:
+                    with result_container:
                         st.error("아이디어를 찾는데 문제가 생겼어요. 다른 주제로 시도해볼까요?")
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True) # input-container 닫기
+    st.markdown('</div>', unsafe_allow_html=True) # card-container 닫기
 
 # ============================
 # 4. 간단 피드백 받기 기능
@@ -1209,7 +1264,7 @@ with tab5:
     # 토론 마무리 활동 TIP 제공
     with st.expander("토론부기의 마무리 활동 TIP"):
         st.markdown("""
-        <div style="background-color: #fff5f2; border-radius: 12px; padding: 1rem; border-left: 5px solid #ffb7c5;">
+        <div class="result-display">
         <h3 style="margin-top:0; color: #66545e;">🦉 토론부기의 마무리 활동 꿀팁</h3>
 
         <ol>
